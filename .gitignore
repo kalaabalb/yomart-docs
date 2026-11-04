@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+node_modules/
+dist/
+build/
+coverage/
+*.log
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+uploads/
+private-uploads/
+payment-proofs/
