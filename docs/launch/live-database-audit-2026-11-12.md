@@ -10,7 +10,7 @@ Scope: active Atlas Free cluster currently used by the Render API.
 - Database: `yomart_staging` (historical name retained; do not rename during cutover).
 - Render API: `https://yomart-api.onrender.com`.
 - Runtime: `NODE_ENV=production`, `PLATFORM=Production`.
-- Live health and CORS smoke workflow [43228035338](https://github.com/kalaabalb/yomart-api/actions/runs/43228035338) passed at 12 November 2026 12:53 UTC.
+- Live health and CORS smoke workflow [43228287511](https://github.com/kalaabalb/yomart-api/actions/runs/43228287511) passed at 12 November 2026 12:53 UTC.
 - Live `GET /health`: HTTP 200, `success:true`, `environment:production`, `platform:Production`, `database:connected`, Cloudinary image storage, authenticated Cloudinary private payment-proof storage, app version `1.0.4`.
 - CORS preflight returned HTTP 204 with exact allow-origin for `https://yomart.onrender.com` and `https://yomart-admin.onrender.com`.
 - Production checkout is disabled using `YOMART_SALES_ENABLED=false` until real prices and stock are owner-approved.
