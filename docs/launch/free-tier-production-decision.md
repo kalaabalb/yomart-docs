@@ -26,7 +26,7 @@ The existing database is now the active production data store. Its historical na
 
 - Eight active products contain synthetic illustrative prices/stock, not approved retail offers.
 - Production checkout is disabled and returns HTTP 503 until the owner approves real prices and stock.
-- Cash on collection is the only configured method; no online gateway or bank/wallet method exists.
+- Cash at shop or handover is the only configured method; no online gateway or bank/wallet method exists.
 - There are zero orders and zero payment-proof records. No fake orders or receipts were created.
 - Customer storefront and admin remain staging/noindex builds while catalogue and legal details are pending.
 - Real desktop/mobile screenshots for storefront and admin have been captured. Android emulator screenshot workflow is still in progress.
