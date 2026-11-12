@@ -66,5 +66,5 @@ Never present sample prices/stock as real sale offers. Do not fabricate customer
 - Backend latest suite: 251 tests, 249 passed, 0 failed, 2 optional tests skipped.
 - Live production health/CORS smoke: [run 43226507608](https://github.com/kalaabalb/yomart-api/actions/runs/43226507608).
 - Genuine web screenshots: [run 43225981502](https://github.com/kalaabalb/yomart-web/actions/runs/43225981502), desktop/mobile storefront and admin.
-- Android latest CI: [run 43222093964](https://github.com/kalaabalb/yomart-mobile/actions/runs/43222093964), debug APK and emulator screenshot still in progress at this snapshot.
+- Android latest CI: [run 43227075413](https://github.com/kalaabalb/yomart-mobile/actions/runs/43227075413), Flutter format/analyze/tests pass; debug APK build and emulator screenshot are running after the emulator configuration fix. A debug APK artifact is already available from [run 43226005733](https://github.com/kalaabalb/yomart-mobile/actions/runs/43226005733).
 - A debug APK is not a signed Play Store AAB.
