@@ -50,8 +50,8 @@ The hosted web screenshot artifact is available from [Customer Storefront CI run
 Important scope limits:
 - The admin screenshots are the sign-in page, not an authenticated admin dashboard.
 - These screenshots show the preview-catalogue state, not an approved live-sales experience.
-- Android preview APK is being rebuilt in [mobile CI run 43232961622](https://github.com/kalaabalb/yomart-mobile/actions/runs/43232961622). It now targets the production API with preview-only catalogue mode. Wait for this run's APK artifact; the older artifact from run 43229794520 used the local 127.0.0.1 API default and must not be used for external-device testing.
-- Android emulator screenshot capture has a bounded timeout and is optional to the code/test/debug-build result; if the hosted emulator cannot boot, physical-device screenshots will still be required.
+- The preview-only Android debug APK is available from [mobile CI run 43232961622](https://github.com/kalaabalb/yomart-mobile/actions/runs/43232961622), artifact 13950889093. It targets the production API and compiles preview-only catalogue mode; it is for sideload acceptance, not Play submission.
+- Android emulator startup screenshot capture is currently running with a bounded timeout and is optional to the code/test/debug-build result. If the hosted emulator cannot boot, physical-device screenshots will still be required.
 - Physical Android-device acceptance remains outstanding.
 
 ## Safety rules
