@@ -11,7 +11,7 @@
 | Customer storefront | Render static service `yomart`, URL `https://yomart.onrender.com`, auto-deploy from `kalaabalb/yomart-web`. | Hosting is configured. Browser acceptance must still cover real user journeys. |
 | Admin | Render static service `yomart-admin`, URL `https://yomart-admin.onrender.com`, auto-deploy from `kalaabalb/yomart-admin`. | Hosting is configured. Role-based workflows must still be accepted end-to-end. |
 | Mobile | `kalaabalb/yomart-mobile`; checkout legacy-cart fix PR #11. Latest CI has passed formatting, analysis, and tests; Android debug APK build is running. | Not yet merged or a signed Play release. |
-| Database | Atlas project `YoMart-Staging`, database `yomart_staging`. Catalog currently includes a staging Phones category, Smartphones subcategory, and two synthetic products; brands collection is empty. | Staging catalog data exists; not production catalog data. |
+| Database | Atlas project `YoMart-Staging`, database `yomart_staging`. Latest seed: 4 categories, 4 subcategories, 2 brands, 8 newly added STAGING SAMPLE products plus 2 earlier STAGING TEST products; 0 orders and 1 pre-existing admin user. | Catalog is populated for visual/flow testing. All added listings are explicitly synthetic, use synthetic prices/stock, and remain unverified for public search. |
 | Payments | Staging store settings contain enabled Cash on collection, no proof requirement, and zero delivery fee. | Manual cash collection/handover only; no gateway. |
 | Cloudinary | Current account has uploaded product/category images. Private/authenticated proof inventory was empty in the latest review. | Does not establish successful end-to-end private proof upload/retrieval. Test with a synthetic proof before accepting real receipts. |
 
