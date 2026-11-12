@@ -27,7 +27,7 @@ Operational, technical, release, and tester documentation for the YoMart API, cu
 | Component | Source | Current address / evidence |
 |---|---|---|
 | API | [yomart-api](https://github.com/kalaabalb/yomart-api) | [yomart-api.onrender.com](https://yomart-api.onrender.com) — runtime production, live health HTTP 200 and CORS preflights pass in [run 43228287511](https://github.com/kalaabalb/yomart-api/actions/runs/43228287511). |
-| Admin | [yomart-admin](https://github.com/kalaabalb/yomart-admin) | [yomart-admin.onrender.com](https://yomart-admin.onrender.com) — static site remains staging/noindex; [CI passed](https://github.com/kalaabalb/yomart-admin/actions/runs/43210816065). |
+| Admin | [yomart-admin](https://github.com/kalaabalb/yomart-admin) | [yomart-admin.onrender.com](https://yomart-admin.onrender.com) — static site remains staging/noindex; [CI passed](https://github.com/kalaabalb/yomart-admin/actions/runs/43225797127). |
 | Customer storefront | [yomart-web](https://github.com/kalaabalb/yomart-web) | [yomart.onrender.com](https://yomart.onrender.com) — static site remains staging/noindex; [CI and desktop/mobile screenshot artifact](https://github.com/kalaabalb/yomart-web/actions/runs/43229601660). |
 | Android app | [yomart-mobile](https://github.com/kalaabalb/yomart-mobile) | Flutter app, ID `com.yomobiles.client`. Checkout compatibility fix merged as `69c91510c4b26d5c976a46727f28252319e7a109`. [Latest preview-mode CI](https://github.com/kalaabalb/yomart-mobile/actions/runs/43229794520) is building the debug APK and emulator screenshot. |
 | Documentation | [yomart-docs](https://github.com/kalaabalb/yomart-docs) | This repository. |
