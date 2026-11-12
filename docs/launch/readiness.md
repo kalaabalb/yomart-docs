@@ -26,7 +26,7 @@
 - [ ] Verify admin login, customer registration/login and admin role restrictions after runtime switch (requires authorized account credentials and a controlled browser session).
 - [x] Capture hosted storefront/admin sign-in screenshots at desktop and mobile widths; preview catalogue notice is visible.
 - [ ] Capture authenticated admin dashboard and all role-protected admin pages after an authorized owner login.
-- [ ] Verify Android emulator screenshot artifact after run 43227075413 completes; prior emulator boot timed out, so the screenshot artifact is not yet available.
+- [ ] Verify Android emulator screenshot artifact after run 43227362300 completes; prior emulator boot timed out, so the screenshot artifact is not yet available.
 - [ ] Physical Android-device acceptance is still required.
 - [ ] Verify private payment-proof upload/retrieval authorization only under a controlled test plan; do not use real receipts.
 - [ ] Confirm Free-tier storage/availability constraints and export/restore process.
