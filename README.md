@@ -2,7 +2,7 @@
 
 Operational, technical, release, and tester documentation for the YoMart API, customer storefront, administrator dashboard, and Flutter Android app.
 
-**Snapshot: 12 November 2026.** The API is running in production on the existing MongoDB Atlas Free cluster. Live health and exact CORS checks passed in [backend workflow 43226507608](https://github.com/kalaabalb/yomart-api/actions/runs/43226507608). Production checkout is intentionally disabled until the owner approves actual prices and stock. The web storefront/admin remain staging/noindex builds. Web screenshot automation has captured home, catalog, product detail, cart, login, support, legal drafts and admin sign-in at desktop/mobile widths; Android debug CI and emulator screenshot capture are in progress. No signed Play AAB exists yet.
+**Snapshot: 12 November 2026.** The API is running in production on the existing MongoDB Atlas Free cluster. Live health and exact CORS checks passed in [backend workflow 43228035338](https://github.com/kalaabalb/yomart-api/actions/runs/43228035338). Production checkout is intentionally disabled until the owner approves actual prices and stock. The web storefront/admin remain staging/noindex builds. Web screenshot automation has captured home, catalog, product detail, cart, login, support, legal drafts and admin sign-in at desktop/mobile widths; Android debug CI and emulator screenshot capture are in progress. No signed Play AAB exists yet.
 
 ## Start here
 
@@ -26,7 +26,7 @@ Operational, technical, release, and tester documentation for the YoMart API, cu
 
 | Component | Source | Current address / evidence |
 |---|---|---|
-| API | [yomart-api](https://github.com/kalaabalb/yomart-api) | [yomart-api.onrender.com](https://yomart-api.onrender.com) — runtime production, live health HTTP 200 and CORS preflights pass in [run 43226507608](https://github.com/kalaabalb/yomart-api/actions/runs/43226507608). |
+| API | [yomart-api](https://github.com/kalaabalb/yomart-api) | [yomart-api.onrender.com](https://yomart-api.onrender.com) — runtime production, live health HTTP 200 and CORS preflights pass in [run 43228035338](https://github.com/kalaabalb/yomart-api/actions/runs/43228035338). |
 | Admin | [yomart-admin](https://github.com/kalaabalb/yomart-admin) | [yomart-admin.onrender.com](https://yomart-admin.onrender.com) — static site remains staging/noindex; [CI passed](https://github.com/kalaabalb/yomart-admin/actions/runs/43210816065). |
 | Customer storefront | [yomart-web](https://github.com/kalaabalb/yomart-web) | [yomart.onrender.com](https://yomart.onrender.com) — static site remains staging/noindex; [CI and desktop/mobile screenshot artifact](https://github.com/kalaabalb/yomart-web/actions/runs/43225981502). |
 | Android app | [yomart-mobile](https://github.com/kalaabalb/yomart-mobile) | Flutter app, ID `com.yomobiles.client`. Checkout compatibility fix merged as `69c91510c4b26d5c976a46727f28252319e7a109`. [Latest preview-mode CI](https://github.com/kalaabalb/yomart-mobile/actions/runs/43222093964) is building the debug APK and emulator screenshot. |
