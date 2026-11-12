@@ -1,62 +1,64 @@
-# Launch readiness snapshot
+# YoMart launch readiness
 
-**Updated:** 5 November 2026. **Disposition:** repository publication is not launch approval. This document records repository and prior local-test evidence plus owner-reported deployment state. It does not claim a fresh hosted acceptance run.
+**Updated:** 12 November 2026  
+**Disposition:** staging is deployed; Android release and tester launch are not yet cleared. This is an evidence-based status, not a blanket NO-GO or an assumption that every component is production-ready.
 
-## Current publication/deployment status
+## Verified deployment state
 
-| Item | Status/evidence |
-|---|---|
-| API repository | Published at `kalaabalb/yomart-api`, `main` commit `0a55c155708d7a3e1218116909e751b92ef976c2`; owner reports service deployed and working at `https://yomart-api.onrender.com`. Current runtime DB/environment not independently checked in this docs task. |
-| Admin repository | Published at `kalaabalb/yomart-admin`, `main` commit `3f724dc42fa718a510b4dba9c41df8b2e657c9d1`; owner reports admin deployed at `https://yomart-admin.onrender.com`. Do not infer which database/environment it targets. |
-| React customer source | Published at `kalaabalb/yomart-web`, `main` commit `f7f2350cbdb50beb4b4ad774a91b82eb4f5f666e`. Local source build/test passed; no Render deployment verified. Requested `https://yomart.onrender.com` is not confirmed assigned. |
-| Flutter Android | Public source repository exists. Signing, final production API build, Play listing, account-specific testing/production access, and Play approval remain separate release tasks. |
-| Docs | This documentation repository is being published separately. |
+| Component | Current evidence | Meaning |
+|---|---|---|
+| API | Render deploy `dep-dbqed32vcj2c73eqphl0` is live at commit `0371cbd01fb7b40df05391c49cedd58f3ea1736f`. API health previously returned HTTP 200, environment `staging`, database connected. | Backend code is deployed to staging; not production. |
+| Customer storefront | Render static service `yomart`, URL `https://yomart.onrender.com`, auto-deploy from `kalaabalb/yomart-web`. | Hosting is configured. Browser acceptance must still cover real user journeys. |
+| Admin | Render static service `yomart-admin`, URL `https://yomart-admin.onrender.com`, auto-deploy from `kalaabalb/yomart-admin`. | Hosting is configured. Role-based workflows must still be accepted end-to-end. |
+| Mobile | `kalaabalb/yomart-mobile`; checkout legacy-cart fix PR #11. Latest CI has passed formatting, analysis, and tests; Android debug APK build is running. | Not yet merged or a signed Play release. |
+| Database | Atlas project `YoMart-Staging`, database `yomart_staging`. Catalog currently includes a staging Phones category, Smartphones subcategory, and two synthetic products; brands collection is empty. | Staging catalog data exists; not production catalog data. |
+| Payments | Staging store settings contain enabled Cash on collection, no proof requirement, and zero delivery fee. | Manual cash collection/handover only; no gateway. |
+| Cloudinary | Current account has uploaded product/category images. Private/authenticated proof inventory was empty in the latest review. | Does not establish successful end-to-end private proof upload/retrieval. Test with a synthetic proof before accepting real receipts. |
 
-## Automated local evidence
+## Current work in progress
 
-Recorded latest checks available to this publication work (not all rerun in the docs copy):
+### Android checkout compatibility
 
-- React storefront publication copy: `npm test` 47 passed, 0 failed; staging build/noindex artifact verification passed in a temporary output directory; `npm audit` reported zero vulnerabilities; Gitleaks found no leaks in scanned source, generated artifact and staged tree; `git diff --cached --check` passed.
-- Backend publication copy: `npm test` 219 passed, 2 skipped, 0 failed (221 total); production and full dependency audits reported zero known vulnerabilities. Skips are optional database-replica integration gates; this count is from the latest local run and may change with source.
-- Admin local publication source: `npm test` 16 passed, 0 failed; production and full audits reported zero known vulnerabilities. Admin remote commit was verified; a new admin deployment was not triggered.
-- Flutter client: `flutter analyze --no-pub` had no issues and `flutter test --no-pub` reported 30 passing tests in the 4 November local work. No current Android production AAB/Play-installed acceptance is claimed here.
+PR #11 protects checkout from older persisted cart items with an empty variants array. It avoids reading `variants.first` and omits optional client price when no variant price exists; the API remains authoritative. The formatter and analyzer issue has been corrected. Do not merge until the current workflow completes successfully and the resulting artifact is verified.
 
-These results are dated local evidence, not a promise that the tests still pass at another commit or that hosted services are healthy. Re-run the relevant CI checks against the exact candidate release.
+## Release gates still required
 
-## Critical and high blockers
+### Android / Google Play
 
-### Critical: legacy public payment-proof assets
+- [ ] Current PR #11 CI green, including Android build and artifact upload.
+- [ ] Merge only the verified PR head; then run and download the build artifact.
+- [ ] Confirm the release keystore is the intended Play upload key; compare its certificate fingerprint with Play Console's upload-key certificate. Do not expose the keystore or passwords.
+- [ ] Build a signed release Android App Bundle (`.aab`) against the approved API origin and correct release version.
+- [ ] Install and exercise the release candidate on physical Android devices; debug APK success is not enough.
+- [ ] Complete Play Console app access, store listing, app content, data safety, target audience, content rating, ads declaration, countries, and testing track setup.
+- [ ] Publish a closed test and recruit real people with Google accounts. For a personal developer account created after 13 November 2023, Google requires 12 opted-in testers continuously for 14 days before the production-access application. Recruit 14 to provide a buffer. Track actual opt-in dates and engagement; never fabricate testers or activity.
+- [ ] Review and answer Play's production-access questionnaire honestly after the closed test.
 
-Older Cloudinary receipt URLs may remain anonymously accessible. The backend no longer exposes/fetches legacy public URLs through customer order serialization/retrieval, but that does not revoke provider/CDN copies. A preservation-first inventory and approved restriction/copy migration, synthetic provider verification (original and derived assets), authorization checks, cache analysis, rollback and evidence reconciliation are required before collecting real receipts or public launch.
+### Catalog and staging data
 
-### High: privacy/legal and retention
+- [ ] Replace synthetic placeholder listings with owner-approved product data, accurate ETB prices, real stock counts, correct categories/brands/variants, and appropriate product imagery.
+- [ ] Keep the staging environment visually useful but unmistakably separate from production. Do not mark synthetic listings as search verified.
+- [ ] Test the customer app, web storefront, and admin against the same staging catalog.
+- [ ] Do not create fake customer accounts or fake order activity to simulate testers. Testers should register themselves; use clearly marked synthetic fixture data only for admin workflow coverage.
 
-Account deletion anonymizes and retains order/payment evidence; public wording must be reviewed and must not promise full order deletion. Orphan/superseded proof retention durations are not approved and remain unset. Do not run destructive cleanup.
+### End-to-end functional acceptance
 
-### High: hosted staging and billing
+- [ ] Customer: first launch, browse, category/brand/collection, product details, cart persistence, checkout, payment method, proof flow where required, order confirmation, order list/detail, tracking, cancellation, logout/login.
+- [ ] Admin: sign-in/session expiry, roles, dashboard, catalog CRUD, image upload, stock/price changes, payment methods, order review, proof review, fulfilment/collection, customer support, settings, notifications, responsive navigation.
+- [ ] API: authentication/authorization, owner isolation, CORS, rate limits, inventory reservation/release, idempotency, proof authorization, payment transitions, public catalog filtering.
+- [ ] Web: direct route refresh/deep links, loading/empty/error/retry states, mobile/tablet/desktop layouts, keyboard access, image failures, network loss.
+- [ ] Media: verify authenticated proof upload, authorized retrieval, unauthorized denial, expiry, and cleanup with exact synthetic asset IDs.
+- [ ] Collect screenshots at phone and desktop breakpoints for every major journey and record device, viewport, app version/commit, and test result. Do not claim screenshot acceptance until the screenshots exist and have been reviewed.
 
-- Verify exact API/admin host, deploy commit, runtime environment and DB target from provider dashboards/health logs.
-- Confirm customer static-site hostname assignment; requested `yomart.onrender.com` is not confirmed.
-- Set exact CORS origins; no wildcard. Resolve any browser preflight/upstream 502 using API and Render evidence.
-- Run full role/ownership, synthetic order, proof, stories, media expiry, deep-link, mobile/browser and SEO acceptance on staging.
-- Confirm $0 billing controls/quotas for Render, Atlas and Cloudinary. Free tiers can suspend, sleep, lose local files, or incur optional/overage charges depending on plan/settings. No cost configuration was checked here.
-- Establish and rehearse database/media backup and restore. Atlas Free has no standard backup feature; manually managed dumps need access controls and a tested restore path.
+### Legal, privacy, operations
 
-## Other known gaps
+- [ ] Publish owner-approved privacy policy and account deletion information at stable public URLs before Play submission.
+- [ ] Confirm deletion behavior and wording: order/payment evidence may be retained for legal/operational reasons and anonymized rather than erased.
+- [ ] Approve proof retention durations before setting cleanup variables or running destructive cleanup.
+- [ ] Verify backup and restore procedure for Atlas and media; rehearse recovery.
+- [ ] Confirm provider billing limits, alerts, and service plans.
+- [ ] Confirm API origins/CORS allowlist and environment separation for the actual Play release. Current API environment is staging.
 
-- No production customer/admin domains or complete production API/site denylist have been independently confirmed. Do not copy old or test domains into production settings.
-- Variant-specific price/stock and ownership validation are missing; configured variants are blocked from customer purchase.
-- React storefront is an SPA. Local staging noindex is checked, but SEO crawlable product/category HTML/sitemap from live verified data has not been completed for this React site. Search indexing/ranking is never guaranteed.
-- Storefront includes no payment gateway, password recovery, email verification, profile-edit or full account-deletion UI. Do not claim otherwise.
-- Story upload is restricted until `STORY_MAX_DURATION_SECONDS` is configured; 15 seconds was approved for staging tests only. Public story publication is not approved. One API process is required while the process-local story guard is in use.
-- Status numbers and audits must be rerun at release commit. Tests cannot establish Cloudinary, Atlas, Render, legal or billing behavior.
+## Launch decision rule
 
-## Release sequence
-
-1. Verify runtime service commit/environment/health and exact database isolation.
-2. Resolve the interrupted synthetic Cloudinary POC asset from existing local recovery evidence before any new provider asset is created; never list assets to guess.
-3. Execute the signed media and role authorization tests on one synthetic staging asset; document provider evidence and clean up only by exact ID.
-4. Complete direct API role tests, transactions/idempotency, destination collection, payment methods, customer flows, admin workflows, and desktop/mobile route refreshes on synthetic data.
-5. Verify exact origin/CORS configuration, staging noindex, robots/sitemap, backup/restore, logs/alerts and $0 usage controls.
-6. Obtain owner/legal decisions on retention, account-deletion language, legacy receipt migration and public stories.
-7. Only then prepare a separate production design/release review. No production deployment is authorized by this checklist.
+A green CI build proves code compiles and automated checks pass. It does not prove payment proof privacy, real catalog quality, Play signing, legal compliance, tester engagement, device compatibility, or production readiness. Clear each gate with dated evidence before public production release.
