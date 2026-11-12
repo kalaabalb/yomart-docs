@@ -1,40 +1,53 @@
 # YoMart production infrastructure decision
 
-Decision: use the existing MongoDB Atlas Free cluster. No paid M10 cluster or other paid database resource is approved or required for this cutover.
+Decision: use the existing MongoDB Atlas Free cluster. No paid M10, Flex, or other paid database resource is approved or required.
 
-## Existing infrastructure
+## Active infrastructure
 
-- Atlas organization: yomarket.
-- Existing project: YoMart-Staging.
-- Existing cluster: yomart-staging (Free tier, AWS AP_SOUTH_1).
-- Existing database: yomart_staging.
-- Existing Render API: https://yomart-api.onrender.com.
-- The current catalog and checkout configuration are retained on this cluster.
+- Atlas project: YoMart-Staging (historical name).
+- Atlas cluster: yomart-staging (Free tier, AWS AP_SOUTH_1).
+- Database: yomart_staging (historical name; now active production data store).
+- API: https://yomart-api.onrender.com
+- Storefront: https://yomart.onrender.com
+- Admin: https://yomart-admin.onrender.com
 
-## Runtime conversion
+## Runtime conversion and live verification
 
-On 12 November 2026, the Render API environment was updated using a merge-only environment update to set NODE_ENV=production and PLATFORM=Production. Existing secrets and other environment variables were not replaced. Render started deployment dep-dbqqjq6i0phs73df2uj0 to apply this runtime change.
+The Render API was changed to `NODE_ENV=production` and `PLATFORM=Production` using a merge-only environment update. Existing secrets and unrelated variables were not replaced.
 
-The existing database is being reused as the production data store. Its historical database name may remain yomart_staging during this conversion; do not run a risky rename/migration solely to change the name. The service environment and operational role are being converted to production.
+- Production checkout protection was deployed, with `YOMART_SALES_ENABLED=false`.
+- Live production smoke workflow [43222001537](https://github.com/kalaabalb/yomart-api/actions/runs/43222001537) passed.
+- Live `GET /health`: HTTP 200, `success:true`, environment `production`, platform `Production`, database `connected`, Cloudinary image storage and authenticated private payment-proof storage, version `1.0.4`.
+- Exact CORS preflights: HTTP 204 for both `https://yomart.onrender.com` and `https://yomart-admin.onrender.com`.
+
+The existing database is now the active production data store. Its historical name may remain `yomart_staging`; do not rename it solely for appearance or create a paid replacement.
+
+## Current business and release boundary
+
+- Eight active products contain synthetic illustrative prices/stock, not approved retail offers.
+- Production checkout is disabled and returns HTTP 503 until the owner approves real prices and stock.
+- Cash on collection is the only configured method; no online gateway or bank/wallet method exists.
+- There are zero orders and zero payment-proof records. No fake orders or receipts were created.
+- Customer storefront and admin remain staging/noindex builds while catalogue and legal details are pending.
+- Real desktop/mobile screenshots for storefront and admin have been captured. Android emulator screenshot workflow is still in progress.
 
 ## Free-tier limitations
 
-The Atlas Free tier has constrained storage, compute, backup, and availability characteristics. It is acceptable for a low-volume launch with careful monitoring, but it is not equivalent to a paid production database with managed backup/restore guarantees. Export important data regularly and monitor storage limits. Do not create paid resources without explicit owner approval.
+Atlas Free has constrained storage, compute, backup and availability. Monitor usage and export important data regularly. Do not enable paid resources, auto-overages or paid add-ons.
 
-## Remaining release gates
+## Remaining owner decisions and release gates
 
-- Confirm Render deployment dep-dbqqjq6i0phs73df2uj0 succeeds.
-- Confirm GET /health reports environment production and database connected.
-- Confirm exact CORS origins still allow the customer storefront and admin.
-- Confirm existing admin login, customer registration/login, public catalog, checkout, inventory, and payment-proof access after the runtime change.
-- Confirm the active product catalogue contains real approved prices and stock before public selling. Current staging catalogue values are synthetic review data and are not automatically safe for real sales.
-- Complete legal publisher/support details and publish privacy/account deletion pages.
-- Build and verify the signed production AAB against the production API and Play upload certificate.
-- Capture real screenshots from running Android and web UIs; do not use generated mockups as app screenshots.
+- Approve actual ETB price, confirmed available stock, exact model/condition/warranty, and sale availability for each active product.
+- Confirm whether cash collection means shop pickup, staff handover/delivery, or both.
+- Supply legal publisher/business name, monitored support email and public business contact details.
+- Approve account deletion/retention language. Current implementation pseudonymizes some order/payment evidence; it does not erase every record.
+- Verify the release keystore certificate against the Play Console upload-key certificate. Keep private key/password local.
+- Build a signed production AAB, test physical devices, complete Play listing/declarations and publish the closed-test track.
+- Confirm Play developer account type and creation date to establish whether the 12-tester/14-day gate applies.
 
 ## Explicit non-actions
 
-- No paid Atlas cluster is created.
-- No existing Free cluster or database is deleted.
-- The unused empty YoMart-Production Atlas project is left untouched; it has no cluster and creates no database compute charge.
-- No credentials are printed, rotated, or replaced as part of this environment-mode change.
+- No paid Atlas cluster was created.
+- No existing Free cluster or database was deleted.
+- The unused empty YoMart-Production project remains untouched; it has no cluster and no database compute charge.
+- No credentials were printed, rotated or replaced as part of this environment-mode change.
