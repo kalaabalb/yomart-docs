@@ -1,7 +1,7 @@
 # YoMart launch readiness
 
 **Updated:** 12 November 2026  
-**Disposition:** The API is live in production on the existing Atlas Free cluster. Production health, catalogue redaction, checkout settings and CORS passed live smoke checks. Checkout is deliberately disabled until real catalogue prices and stock are approved. Storefront/admin are deployed preview builds, not public-sales builds. Twelve genuine web screenshots are captured. A production-connected, preview-only Android debug APK is available for sideload acceptance. The Android emulator screenshot attempt was cancelled during the previous run; a smaller split-ABI rebuild and isolated emulator job are running. No signed Play AAB or Play test release exists.
+**Disposition:** The API is live in production on the existing Atlas Free cluster. Production health, catalogue redaction, checkout settings and CORS passed live smoke checks. Checkout is deliberately disabled until real catalogue prices and stock are approved. Storefront/admin are deployed preview builds, not public-sales builds. Twelve genuine web screenshots are captured. Split-ABI production-connected, preview-only Android debug APKs are available for sideload acceptance. The isolated Android emulator screenshot job is still running. No signed Play AAB or Play test release exists.
 
 ## Verified state
 
@@ -17,7 +17,7 @@
 | Storefront | [yomart.onrender.com](https://yomart.onrender.com), deployed from commit d50f052e8f2095b87692dda33cb7a9c203a295e4. | Preview catalogue notice visible; ordering unavailable. Not approved as a sales storefront. |
 | Admin web | [yomart-admin.onrender.com](https://yomart-admin.onrender.com), deployed from commit dbe80bc26f718e2c54dae4446811936e9c771ba2. | Sign-in screen captured. Authenticated dashboard/role flows still need owner-assisted acceptance. |
 | Web screenshots | [Screenshot artifact 13951200004](https://github.com/kalaabalb/yomart-web/actions/runs/43229601660) contains 12 genuine hosted PNGs: desktop/mobile storefront, listing, product detail, cart, login, support, privacy/account-deletion drafts, and admin sign-in. | Captured; admin screenshots are sign-in only, not authenticated dashboard. |
-| Mobile | App ID com.yomobiles.client, source version 1.0.0+5, target SDK 36. [All-ABI preview APK artifact 13950889093](https://github.com/kalaabalb/yomart-mobile/actions/runs/43232961622) was built with production API, privacy URL and YOMART_PREVIEW_CATALOG=true. [Split-ABI rebuild run 43234715460](https://github.com/kalaabalb/yomart-mobile/actions/runs/43234715460) is in progress. | Flutter format, analyze, tests and APK build passed in the all-ABI run. APK is debug-signed for sideload testing, not Play submission. No Android screenshot captured yet. |
+| Mobile | App ID com.yomobiles.client, source version 1.0.0+5, target SDK 36. [Split-ABI preview APK artifact 13951718520](https://github.com/kalaabalb/yomart-mobile/actions/runs/43234715460) contains arm32, arm64 and x86_64 debug APKs built with production API, privacy URL and YOMART_PREVIEW_CATALOG=true. | Flutter format, analyze, tests and APK build passed. APKs are debug-signed for sideload testing, not Play submission. Emulator screenshot job is still running. |
 | Backend | Inventory reservation lifecycle deployed. Latest suite: 253 tests, 251 passed, 0 failed, 2 optional tests skipped. | Automated checks pass; live transactional checkout intentionally disabled. |
 | Docs | Free-tier decision, production cutover runbook, live database audit, catalogue owner-approval CSV and Play listing draft committed. | Updated for production switch and preview-only testing. |
 
@@ -26,7 +26,7 @@
 - [ ] Verify customer registration/login and admin login/role restrictions with an authorized owner session.
 - [ ] Capture authenticated admin dashboard and protected pages after the owner signs in.
 - [ ] Complete Android emulator screenshot capture; if the hosted emulator cannot boot, capture the app on a physical Android device.
-- [ ] Install the preview APK on a real Android device and confirm launch, login, catalogue, image loading and preview-safe checkout messaging.
+- [ ] Install the arm64 preview APK on a real Android device and confirm launch, login, catalogue, images and preview-safe checkout messaging.
 - [ ] Verify private payment-proof upload/retrieval authorization only under a controlled test plan; do not use real receipts.
 - [ ] Confirm Free-tier storage/availability constraints and export/restore process.
 - [ ] Rebuild storefront/admin as production only after legal details and approved catalogue are ready; configure indexing intentionally.
