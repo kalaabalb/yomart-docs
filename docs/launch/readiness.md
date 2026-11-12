@@ -13,7 +13,7 @@
 | Database | Existing Atlas Free cluster `yomart-staging`, project `YoMart-Staging`, database `yomart_staging`. 20 collections; 1.44 MB. | Active production data store; no separate staging database. |
 | Data | 10 products (8 active, 2 inactive), 4 categories, 4 subcategories, 2 brands, 2 collections, 2 posters, 1 admin account, 1 customer account, 1 settings record, 0 orders, 0 payment proofs. | No real order/payment evidence yet. No fake records created. |
 | Catalogue | All 8 active products have `isSearchVerified:false` and source notes explicitly mark prices/stock as synthetic. | Do not sell or index these as verified offers until owner approves prices/stock. |
-| Payment | One enabled method: Cash on collection; no proof required. | Manual cash at handover; no online gateway or bank/wallet method. |
+| Payment | One enabled method: Cash at shop or handover; no proof required. | Manual cash at handover; no online gateway or bank/wallet method. |
 | Storefront | [yomart.onrender.com](https://yomart.onrender.com), Render deployment from commit `9575398150b8daa1fe3190556aba9f3904363ad8`. | Staging/noindex preview build. |
 | Admin web | [yomart-admin.onrender.com](https://yomart-admin.onrender.com), commit `5151cbcfd7d51f7e6eccfe4df0894faa9e11da65`. | Staging build. |
 | Web screenshots | [Workflow 43221115390](https://github.com/kalaabalb/yomart-web/actions/runs/43221115390) uploaded genuine 1440x1100 desktop and 390x844 mobile screenshots for storefront and admin. | Captured; rerun after deployment to verify preview notice. |
