@@ -45,7 +45,7 @@ The Android package ID is currently `com.yomobiles.client`. Confirm that this is
 
 The hosted web screenshot pack captures the storefront and admin sign-in page. The authenticated admin dashboard and protected pages cannot be captured without an authorized session.
 
-A preview-only debug APK (not signed for Play upload) is available from [mobile CI run 43229794520](https://github.com/kalaabalb/yomart-mobile/actions/runs/43229794520) for sideload smoke testing. Sign in yourself at [yomart-admin.onrender.com](https://yomart-admin.onrender.com) and provide sanitized screenshots of the dashboard, product list/detail, order list, payment settings and other important admin pages. Do not send passwords or customer personal data. Also install the eventual closed-test build on a real Android device and report any launch, login, navigation or layout failures.
+Sign in yourself at [yomart-admin.onrender.com](https://yomart-admin.onrender.com) and provide sanitized screenshots of the dashboard, product list/detail, order list, payment settings and other important admin pages. Do not send passwords or customer personal data. Also install the eventual closed-test build on a real Android device and report any launch, login, navigation or layout failures.
 
 ## Safe handling
 
