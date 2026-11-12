@@ -25,7 +25,7 @@ The former staging Atlas Free cluster/database has been converted into the activ
 - [ ] Provide a working feedback email or URL.
 - [ ] Ensure privacy policy and account-deletion URL are publicly reachable and accurate.
 - [ ] Ensure the current catalogue is clearly marked as preview/test data or replace it with owner-approved product prices and stock. Never present synthetic prices as real offers.
-- [ ] Confirm the payment/fulfilment behavior; current method is cash on collection and no online gateway exists.
+- [ ] Confirm the payment/fulfilment behavior; current method is cash at shop or handover and no online gateway exists.
 - [ ] Ensure testers know not to transfer money or upload real payment receipts during preview testing.
 - [ ] Prepare a bug-report channel and device/OS/version log.
 - [ ] Recruit 14 people who represent likely customers and use a range of Android devices and network conditions.
@@ -48,7 +48,7 @@ The former staging Atlas Free cluster/database has been converted into the activ
 | 3 | Product detail, images, preview price/stock presentation | Product screenshots, incorrect/missing data |
 | 4 | Cart display and non-submitting interaction | Cart screenshots; do not submit a real order |
 | 5 | Checkout form display and validation only | Checkout screenshots; stop before order submission |
-| 6 | Cash on collection explanation | Verify wording only; no money transfer |
+| 6 | Cash at shop or handover explanation | Verify wording only; no money transfer |
 | 7 | Account history empty state and order UI review | Screenshots; do not fabricate order history |
 | 8 | Out-of-stock and cancellation UX review | Non-destructive review only; no production stock mutations |
 | 9 | Login/logout/session expiry and account flows | Screenshots, auth failures, privacy concerns |
