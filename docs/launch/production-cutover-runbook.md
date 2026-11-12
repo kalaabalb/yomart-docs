@@ -2,57 +2,69 @@
 
 Snapshot: 12 November 2026
 
-## Release target
+## Active release target
 
-The existing free infrastructure is being converted for production use. Do not provision paid database resources.
-
-- Customer storefront: https://yomart.onrender.com
+- Storefront: https://yomart.onrender.com
 - Admin: https://yomart-admin.onrender.com
 - API: https://yomart-api.onrender.com
-- Existing Atlas project: YoMart-Staging (historical project name).
-- Existing Atlas cluster: yomart-staging (Free tier, AWS AP_SOUTH_1).
-- Existing database: yomart_staging (historical database name retained to avoid a risky rename).
+- Atlas project: YoMart-Staging (historical name).
+- Cluster: yomart-staging (Free tier, AWS AP_SOUTH_1).
+- Database: yomart_staging (historical name; active production database).
 
-## Production boundary and cost decision
+## Production boundary and verified status
 
-The owner explicitly chose the existing Atlas Free cluster because no paid infrastructure budget is available. Reuse the existing cluster and its current database/catalog. Do not create an M10, Flex, or other paid resource. Do not delete the existing cluster or database.
+The owner selected the existing Atlas Free cluster. Reuse its database/catalog. Do not create paid resources or delete/rename the cluster/database.
 
-The API Render service was updated on 12 November 2026 to set NODE_ENV=production and PLATFORM=Production. Deployment dep-dbqqjq6i0phs73df2uj0 completed and the new instance logged a successful MongoDB connection. The runtime environment still requires a live /health response confirming production and database connected.
+The API runs with `NODE_ENV=production` and `PLATFORM=Production`. Production checkout is disabled with `YOMART_SALES_ENABLED=false`; new orders fail closed with HTTP 503 until owner-approved real prices and stock are configured.
 
-An unused empty Atlas project named YoMart-Production (ID 6af5a8b7c1682d425fef1dac) exists from earlier setup. It has no cluster and is not in use. Leave it alone; it is not part of the active data path.
+GitHub Actions [run 43222001537](https://github.com/kalaabalb/yomart-api/actions/runs/43222001537) passed backend tests and live production smoke checks:
+- `GET /health`: HTTP 200, `success:true`, environment `production`, platform `Production`, database `connected`, Cloudinary image storage and authenticated private payment-proof storage, version `1.0.4`.
+- CORS preflight: HTTP 204 with exact allow-origin for storefront and admin.
+
+The historical database name remains `yomart_staging`; it is not a separate staging database. An unused empty Atlas project `YoMart-Production` (ID `6af5a8b7c1682d425fef1dac`) has no cluster and is not in use.
+
+## Current data
+
+- 20 collections; 1.44 MB.
+- 8 active synthetic catalogue products, 2 inactive historical test fixtures, 4 categories, 4 subcategories, 2 brands, 2 collections, 2 posters.
+- One admin account and one customer account.
+- Zero orders and zero payment-proof records.
+- One enabled payment method: Cash on collection; no proof required, zero delivery fee. No online gateway or bank/wallet method.
+
+Never present sample prices/stock as real sale offers. Do not fabricate customers, orders, reviews, payment proofs or tester activity.
 
 ## Cutover and verification sequence
 
-1. Keep the existing Free Atlas cluster and database. Monitor its free-tier storage/availability constraints and export important data regularly.
-2. Verify API health reports production and database connected. Confirm exact CORS origins for the customer storefront and admin.
-3. Verify Cloudinary product/category/poster assets and upload behavior. Payment proofs must remain authenticated/private; never expose proof URLs in order JSON or public static folders.
-4. Verify admin login, customer registration/login, public catalog, checkout, stock reservation/release/consumption, order ownership, payment-proof authorization, and admin role restrictions.
-5. Confirm the active product catalogue contains real owner-approved prices and stock before public selling. Current catalogue sample prices and stock are synthetic review data, not sale offers.
-6. Configure customer storefront and admin to call the production API. Check deployed output for staging hostnames, test credentials, placeholder legal copy, and unintended noindex directives.
-7. Publish privacy policy and account-deletion pages with real publisher/support details and owner-approved deletion/retention language.
-8. Build a signed Android App Bundle against the production API. Verify application ID, version code, target SDK, signing certificate/upload-key match, release manifest, and absence of staging URLs/secrets.
-9. Run production smoke tests and capture genuine screenshots from the running app and web pages. Do not fabricate orders, customers, payment evidence, or screenshot evidence.
-10. Submit the closed-testing build only after release checks pass. Confirm the Play account's testing requirements and track the tester opt-in period.
+1. Keep the existing Free Atlas cluster/database; monitor storage and availability, export important data regularly.
+2. Keep `YOMART_SALES_ENABLED=false` until real product prices and stock are owner-approved.
+3. Verify admin login, customer authentication, public catalog, order ownership and admin role restrictions. Avoid synthetic writes to the active production database.
+4. Keep storefront and admin builds noindex until catalogue/legal details are approved. Both remain staging/noindex builds.
+5. Verify Cloudinary catalog assets and upload behavior. Payment proofs remain authenticated/private; never expose proof URLs in order JSON or public static folders.
+6. Publish privacy policy and account-deletion pages with real publisher/support details and owner-approved retention language.
+7. Build a signed Android App Bundle against the production API. Verify application ID, version code, target SDK, signing certificate/upload-key match, release manifest and absence of staging URLs/secrets.
+8. Test signed release on physical Android devices. Current CI screenshots cover web at desktop/mobile widths; Android emulator screenshot capture is still running.
+9. Enable sales only after approved catalogue data and a controlled checkout acceptance plan. Verify inventory lifecycle and payment-proof authorization without fake production activity.
+10. Submit closed testing only after Play release checks pass. Track actual tester opt-in dates.
 
-## Go-live acceptance checklist
+## Go-live acceptance
 
-- [ ] API /health reports production and connected database.
-- [ ] API CORS allowlist contains only approved HTTPS origins.
-- [ ] Customer storefront and admin use the production API.
-- [ ] Authentication and admin authorization pass against the active database.
-- [ ] Checkout and inventory lifecycle pass against the active database.
-- [ ] Payment-proof access is private and owner/admin authorization is enforced.
-- [ ] Real product prices and stock are approved before public selling.
-- [ ] Legal pages are published with approved publisher and support details.
-- [ ] Production privacy/deletion behavior is approved and accurately described.
-- [ ] Signed AAB uses the verified Play upload certificate and production API.
-- [ ] Release build and Play listing assets are reviewed.
-- [ ] Genuine Android-device acceptance and production screenshots are recorded.
-- [ ] Closed-testing track is submitted and tester opt-in period is tracked.
+- [x] API health reports production and connected database.
+- [x] CORS preflight allows the two approved web origins.
+- [x] Production checkout is disabled until catalogue approval.
+- [ ] Storefront/admin rebuilt with intended production configuration and approved catalogue.
+- [ ] Authentication and admin authorization pass after runtime switch.
+- [ ] Real product prices and stock approved.
+- [ ] Private proof upload/retrieval verified under a controlled test plan.
+- [ ] Legal pages published with approved publisher/support details.
+- [ ] Privacy/deletion behavior approved and accurately described.
+- [ ] Signed AAB uses verified Play upload certificate and production API.
+- [ ] Physical Android acceptance, Play listing assets and declarations complete.
+- [ ] Closed-testing track submitted and tester opt-in period tracked.
 
-## Current release evidence
+## Current evidence
 
-- Mobile CI artifact: https://github.com/kalaabalb/yomart-mobile/actions/runs/43210860089 — debug APK only, not a signed Play Store AAB.
-- Backend inventory lifecycle changes are deployed; latest documented backend suite: 245 passed, 2 optional replica-set tests skipped.
-- Catalogue currently contains synthetic review prices/stock; these must not be represented as verified real offers.
-- Checkout is configured for cash collection; no online payment gateway is configured.
+- Backend latest suite: 251 tests, 249 passed, 0 failed, 2 optional tests skipped.
+- Live production health/CORS smoke: [run 43222001537](https://github.com/kalaabalb/yomart-api/actions/runs/43222001537).
+- Genuine web screenshots: [run 43221115390](https://github.com/kalaabalb/yomart-web/actions/runs/43221115390), desktop/mobile storefront and admin.
+- Android latest CI: [run 43222093964](https://github.com/kalaabalb/yomart-mobile/actions/runs/43222093964), debug APK and emulator screenshot still in progress at this snapshot.
+- A debug APK is not a signed Play Store AAB.
