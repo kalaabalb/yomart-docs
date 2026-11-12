@@ -17,7 +17,7 @@ The owner selected the existing Atlas Free cluster. Reuse its database/catalog. 
 
 The API runs with `NODE_ENV=production` and `PLATFORM=Production`. Production checkout is disabled with `YOMART_SALES_ENABLED=false`; new orders fail closed with HTTP 503 until owner-approved real prices and stock are configured.
 
-GitHub Actions [run 43228035338](https://github.com/kalaabalb/yomart-api/actions/runs/43228035338) passed backend tests and live production smoke checks:
+GitHub Actions [run 43228287511](https://github.com/kalaabalb/yomart-api/actions/runs/43228287511) passed backend tests and live production smoke checks:
 - `GET /health`: HTTP 200, `success:true`, environment `production`, platform `Production`, database `connected`, Cloudinary image storage and authenticated private payment-proof storage, version `1.0.4`.
 - CORS preflight: HTTP 204 with exact allow-origin for storefront and admin.
 
@@ -64,7 +64,7 @@ Never present sample prices/stock as real sale offers. Do not fabricate customer
 ## Current evidence
 
 - Backend latest suite: 251 tests, 249 passed, 0 failed, 2 optional tests skipped.
-- Live production health/CORS smoke: [run 43228035338](https://github.com/kalaabalb/yomart-api/actions/runs/43228035338).
+- Live production health/CORS smoke: [run 43228287511](https://github.com/kalaabalb/yomart-api/actions/runs/43228287511).
 - Genuine web screenshots: [run 43225981502](https://github.com/kalaabalb/yomart-web/actions/runs/43225981502), desktop/mobile storefront and admin.
 - Android latest CI: [run 43227075413](https://github.com/kalaabalb/yomart-mobile/actions/runs/43227075413), Flutter format/analyze/tests pass; debug APK build and emulator screenshot are running after the emulator configuration fix. A debug APK artifact is already available from [run 43226005733](https://github.com/kalaabalb/yomart-mobile/actions/runs/43226005733).
 - A debug APK is not a signed Play Store AAB.
