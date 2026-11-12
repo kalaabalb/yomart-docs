@@ -49,7 +49,7 @@ No customer orders or payment proofs exist. One admin account and one customer a
 - Eight products are active and two old staging test products are inactive.
 - Categories now use clean customer-facing labels: Smartphones, Tablets, Audio, Computers & Wearables. The earlier visible `STAGING SAMPLE —` prefix was removed from category names.
 - All eight active products have `isSearchVerified:false`.
-- Their `catalogSource.note` identifies prices and stock as synthetic review data, not retail offers.
+- Their `catalogSource.note` identifies prices and stock as synthetic review data, not retail offers. Their generic staging-only descriptions were cleared so the customer detail page does not present fake specifications.
 - Product price and quantity fields remain illustrative. They are not owner-approved selling prices or verified available stock.
 - The checkout settings record has one enabled payment method: Cash on collection.
 - It requires no payment proof. The method text says payment is made to YoMart staff when the customer receives the order.
