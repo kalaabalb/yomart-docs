@@ -2,7 +2,7 @@
 
 Operational, technical, release, and tester documentation for the YoMart API, customer storefront, administrator dashboard, and Flutter Android app.
 
-**Snapshot: 12 November 2026.** The customer storefront and admin static sites are deployed on Render. The API deployment is live and reports the staging environment; do not treat the Render environment label as proof of production. Android checkout compatibility work is in CI; a debug build is not a Play Store release.
+**Snapshot: 12 November 2026.** The customer storefront and admin static sites are deployed on Render. The API deployment is live and reports the staging environment; do not treat the Render environment label as proof of production. Android checkout compatibility fix is merged and the post-merge main-branch CI build has passed, producing a debug APK. This is not a signed Play Store release.
 
 ## Start here
 
@@ -15,26 +15,28 @@ Operational, technical, release, and tester documentation for the YoMart API, cu
 - [Administrator workflow](docs/workflows/admin.md)
 - [Launch readiness and release gates](docs/launch/readiness.md)
 - [Staging acceptance plan](docs/launch/staging-acceptance.md)
-- [Closed-testing playbook for 14 testers / 15 days](docs/launch/closed-testing-playbook.md)
+- [Closed-testing playbook: 14 testers / 15 days](docs/launch/closed-testing-playbook.md)
+- [Staging catalogue and screenshot evidence](docs/launch/staging-catalog-and-screenshot-evidence.md)
 
 ## Repositories and deployed addresses
 
 | Component | Source | Current address / evidence |
 |---|---|---|
-| API | [yomart-api](https://github.com/kalaabalb/yomart-api) | [yomart-api.onrender.com](https://yomart-api.onrender.com) — Render deployment at commit `0371cbd01fb7b40df05391c49cedd58f3ea1736f`; API health previously reported staging and connected database. |
+| API | [yomart-api](https://github.com/kalaabalb/yomart-api) | [yomart-api.onrender.com](https://yomart-api.onrender.com) — deployment at commit `0371cbd01fb7b40df05391c49cedd58f3ea1736f`; API health previously reported staging and connected database. |
 | Admin | [yomart-admin](https://github.com/kalaabalb/yomart-admin) | [yomart-admin.onrender.com](https://yomart-admin.onrender.com) — Render static site. |
 | Customer storefront | [yomart-web](https://github.com/kalaabalb/yomart-web) | [yomart.onrender.com](https://yomart.onrender.com) — Render static site. |
-| Android app | [yomart-mobile](https://github.com/kalaabalb/yomart-mobile) | Flutter app, application ID `com.yomobiles.client`. Checkout compatibility fix is being verified in GitHub Actions; no signed Play upload AAB is certified here. |
+| Android app | [yomart-mobile](https://github.com/kalaabalb/yomart-mobile) | Flutter app, application ID `com.yomobiles.client`. Checkout fix merged as `69c91510c4b26d5c976a46727f28252319e7a109`; [post-merge CI and debug APK artifact](https://github.com/kalaabalb/yomart-mobile/actions/runs/43207373086). |
 | Documentation | [yomart-docs](https://github.com/kalaabalb/yomart-docs) | This repository. |
 
 ## Current release boundary
 
-- The API's current environment is **staging**. Testers must use staging data and must not enter real payment details, real receipts, or sensitive personal information.
-- The staging catalog currently contains clearly labelled synthetic test records. Replace or extend these only with owner-approved, accurately described listings and images before inviting external testers.
+- API environment is **staging**. Testers must use staging data and must not enter real payment details, real receipts, or sensitive personal information.
+- Staging catalogue has 8 active synthetic sample products plus 2 inactive historical stock/checkout fixtures, 4 categories, 4 subcategories, 2 brands, 2 collections and 2 campaign posters. All products remain unverified for search. Sample prices and quantities are not retail offers.
+- Cloudinary holds product/category images and two 1600×600 campaign banners. No payment proofs, receipts or customer private media were seeded.
 - Cash on collection is configured in staging. This is manual payment, not an online payment gateway.
-- Android CI must pass on the final PR head and produce a verified artifact before merge. A debug APK is not a Play upload AAB.
+- Android PR #11 is merged. Main-branch format, analysis, tests and Android debug build passed; artifact is not a signed Play upload AAB.
 - A signed release AAB, upload-key verification, Play Console listing/declarations, privacy and account-deletion URLs, and closed-test setup are separate gates.
-- For new personal Play developer accounts created after 13 November 2023, Google requires at least 12 testers continuously opted in to a closed test for 14 days before applying for production access. Recruiting 14 gives a two-person buffer; it does not replace the continuous opt-in requirement.
+- For new personal Play developer accounts created after 13 November 2023, Google requires at least 12 testers continuously opted in to a closed test for 14 days before applying for production access. Recruiting 14 gives a two-person buffer; it does not replace continuous opt-in.
 
 ## Evidence conventions
 
