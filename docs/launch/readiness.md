@@ -7,7 +7,7 @@
 
 | Area | Evidence | Status |
 |---|---|---|
-| API runtime | Live smoke workflow [43222001537](https://github.com/kalaabalb/yomart-api/actions/runs/43222001537) passed. Health HTTP 200, success true, production, database connected, Cloudinary image storage and authenticated private proof storage, version 1.0.4. | Verified |
+| API runtime | Live smoke workflow [43224380086](https://github.com/kalaabalb/yomart-api/actions/runs/43224380086) passed. Health HTTP 200, success true, production, database connected, Cloudinary image storage and authenticated private proof storage, version 1.0.4. | Verified |
 | CORS | Same live workflow confirmed HTTP 204 exact allow-origin for customer storefront and admin. | Verified |
 | Checkout guard | Backend source has fail-closed `YOMART_SALES_ENABLED`; production env set to false. API blocks new order creation until owner-approved price/stock data is ready. | Protected |
 | Database | Existing Atlas Free cluster `yomart-staging`, project `YoMart-Staging`, database `yomart_staging`. 20 collections; 1.44 MB. | Active production data store; no separate staging database. |
