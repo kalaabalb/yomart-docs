@@ -46,11 +46,11 @@ The former staging Atlas Free cluster/database has been converted into the activ
 | 1 | Opt-in, install, first launch, onboarding | Opt-in timestamp, device/Android version, install result, first-launch screenshot |
 | 2 | Browse home, categories, brands, search | Screenshots, broken image/report, search relevance |
 | 3 | Product detail, images, preview price/stock presentation | Product screenshots, incorrect/missing data |
-| 4 | Cart display and non-submitting interaction | Cart screenshots; do not submit a real order |
-| 5 | Checkout form display and validation only | Checkout screenshots; stop before order submission |
+| 4 | Empty-cart state and preview restrictions | Capture the empty cart and disabled-ordering message; preview mode intentionally prevents adding products to cart |
+| 5 | Checkout safety guard | Verify the app states checkout is unavailable in preview and does not expose a submit path; no checkout form or order can be tested until approved prices/stock exist |
 | 6 | Cash at shop or handover explanation | Verify wording only; no money transfer |
-| 7 | Account history empty state and order UI review | Screenshots; do not fabricate order history |
-| 8 | Out-of-stock and cancellation UX review | Non-destructive review only; no production stock mutations |
+| 7 | Account history empty state and profile UI | Use the tester's own account; capture empty order history; do not fabricate order history |
+| 8 | Catalogue availability messaging and order-status copy review | Read-only review of preview availability messaging; do not mutate production stock or create/cancel orders |
 | 9 | Login/logout/session expiry and account flows | Screenshots, auth failures, privacy concerns |
 | 10 | Slow/unstable network, retry, app resume | Screen recording or screenshots of error/recovery states |
 | 11 | Small-screen and large-screen layout/accessibility | Device screenshots, clipping/tap-target issues |
@@ -101,9 +101,10 @@ Keep this file private; never commit tester email addresses or personal details 
 
 Capture real application screenshots; do not fabricate mockups as test evidence.
 
-- [ ] Android: splash, home, category, brand, product detail, cart, checkout, payment method, account.
+- [ ] Android: splash, home, product listing/detail, empty cart, preview ordering-unavailable state, login/register and account.
+- [ ] Do not claim a checkout form, payment-method selection, order confirmation or order tracking screenshot until a safe transactional test environment and approved product data exist.
 - [ ] Admin: login, dashboard, products list/detail/edit, category/brand, orders list/detail, payment review, settings, responsive navigation.
-- [ ] Storefront: home, product list/detail, cart, checkout, mobile and desktop layouts.
+- [ ] Storefront: home, product list/detail, empty cart, checkout-unavailable preview state, mobile and desktop layouts.
 - [ ] Each image has filename with date, surface, screen, viewport/device, and app commit/version.
 - [ ] Blur customer names, phone numbers, addresses, emails, tokens, receipts and order identifiers before sharing.
 - [ ] Keep original evidence in a private project folder; only publish sanitized screenshots approved by the owner.
