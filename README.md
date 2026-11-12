@@ -2,7 +2,7 @@
 
 Operational, technical, release, and tester documentation for the YoMart API, customer storefront, administrator dashboard, and Flutter Android app.
 
-**Snapshot: 12 November 2026.** The API is running in production on the existing MongoDB Atlas Free cluster. Live health and exact CORS checks passed in [backend workflow 43228287511](https://github.com/kalaabalb/yomart-api/actions/runs/43228287511). Production checkout is intentionally disabled until the owner approves actual prices and stock. The web storefront/admin remain staging/noindex builds. Web screenshot automation has captured home, catalog, product detail, cart, login, support, legal drafts and admin sign-in at desktop/mobile widths; Android debug CI and emulator screenshot capture are in progress. No signed Play AAB exists yet.
+**Snapshot: 12 November 2026.** The API is live in production on the existing MongoDB Atlas Free cluster. [Backend workflow 43233324854](https://github.com/kalaabalb/yomart-api/actions/runs/43233324854) passed the full 253-test suite and live production health/catalogue/checkout-settings/CORS smoke. `YOMART_SALES_ENABLED=false` is explicitly set. The web storefront/admin remain staging/noindex preview builds. Twelve genuine desktop/mobile web screenshots are available from [web screenshot artifact 13951200004](https://github.com/kalaabalb/yomart-web/actions/runs/43229601660). The Android preview APK is being rebuilt against the production API with catalogue-only mode in [mobile CI run 43232961622](https://github.com/kalaabalb/yomart-mobile/actions/runs/43232961622). No signed Play AAB exists yet.
 
 ## Start here
 
@@ -27,22 +27,24 @@ Operational, technical, release, and tester documentation for the YoMart API, cu
 
 | Component | Source | Current address / evidence |
 |---|---|---|
-| API | [yomart-api](https://github.com/kalaabalb/yomart-api) | [yomart-api.onrender.com](https://yomart-api.onrender.com) — runtime production, live health HTTP 200 and CORS preflights pass in [run 43228287511](https://github.com/kalaabalb/yomart-api/actions/runs/43228287511). |
-| Admin | [yomart-admin](https://github.com/kalaabalb/yomart-admin) | [yomart-admin.onrender.com](https://yomart-admin.onrender.com) — static site remains staging/noindex; [CI passed](https://github.com/kalaabalb/yomart-admin/actions/runs/43225797127). |
-| Customer storefront | [yomart-web](https://github.com/kalaabalb/yomart-web) | [yomart.onrender.com](https://yomart.onrender.com) — static site remains staging/noindex; [CI and desktop/mobile screenshot artifact](https://github.com/kalaabalb/yomart-web/actions/runs/43229601660). |
-| Android app | [yomart-mobile](https://github.com/kalaabalb/yomart-mobile) | Flutter app, ID `com.yomobiles.client`. Checkout compatibility fix merged as `69c91510c4b26d5c976a46727f28252319e7a109`. [Latest preview-mode CI](https://github.com/kalaabalb/yomart-mobile/actions/runs/43232114915) is building the debug APK and emulator screenshot. |
+| API | [yomart-api](https://github.com/kalaabalb/yomart-api) | [yomart-api.onrender.com](https://yomart-api.onrender.com) — production runtime, health HTTP 200, database connected, 8 preview products redacted, cash settings and CORS verified in [run 43233324854](https://github.com/kalaabalb/yomart-api/actions/runs/43233324854). |
+| Admin | [yomart-admin](https://github.com/kalaabalb/yomart-admin) | [yomart-admin.onrender.com](https://yomart-admin.onrender.com) — static preview/noindex site; [CI passed](https://github.com/kalaabalb/yomart-admin/actions/runs/43225797127). |
+| Customer storefront | [yomart-web](https://github.com/kalaabalb/yomart-web) | [yomart.onrender.com](https://yomart.onrender.com) — static preview/noindex site; [CI and genuine screenshot artifact](https://github.com/kalaabalb/yomart-web/actions/runs/43229601660). |
+| Android app | [yomart-mobile](https://github.com/kalaabalb/yomart-mobile) | Flutter app, ID `com.yomobiles.client`. Checkout compatibility fix merged as `69c91510c4b26d5c976a46727f28252319e7a109`. [Preview APK CI](https://github.com/kalaabalb/yomart-mobile/actions/runs/43232961622) is in progress; it now compiles the production API URL and preview-only catalogue flag. |
 | Documentation | [yomart-docs](https://github.com/kalaabalb/yomart-docs) | This repository. |
 
 ## Current release boundary
 
 - API runs in **production** on the existing Atlas Free cluster/database. No paid database resource was created and no existing database was deleted. Historical Atlas project/database names still contain “Staging”; see the free-tier decision.
-- Production health: HTTP 200, success true, environment production, database connected, Cloudinary image storage, authenticated private payment-proof storage, version 1.0.4.
+- Latest live health: HTTP 200, success true, environment production, database connected, Cloudinary image storage, authenticated private payment-proof storage, version 1.0.4.
 - CORS preflight: HTTP 204 with exact allow-origin for both customer storefront and admin.
 - Hosted noindex legal drafts are available at [privacy policy](https://yomart.onrender.com/privacy-policy.html) and [account deletion](https://yomart.onrender.com/account-deletion.html); publisher/support details and retention wording are not finalized.
-- Production checkout is fail-closed: with `NODE_ENV=production`, the API defaults sales to disabled unless `YOMART_SALES_ENABLED=true` is deliberately set. Keep it false or unset until owner-approved prices and stock are configured. Public catalog APIs also omit synthetic price and quantity fields.
-- Admin and customer static sites remain staging/noindex builds. The customer storefront displays a preview-catalogue notice in non-production mode.
+- Production checkout is fail-closed: `YOMART_SALES_ENABLED=false` is explicitly set. Public catalog APIs omit synthetic price and quantity fields.
+- Admin and customer static sites remain staging/noindex builds. The customer storefront displays a preview-catalogue notice and ordering is unavailable.
 - Active catalogue has 8 synthetic products with illustrative prices/stock, 2 inactive historical test products, 4 categories, 4 subcategories, 2 brands, 2 collections and 2 posters. All active products remain unverified for public search. Do not sell these as real offers.
 - Live database audit found 0 orders and 0 payment-proof records. One admin account and one customer account exist; personal identifiers and credentials are excluded from documentation.
 - Cash at shop or handover is the only configured payment method. No online gateway or bank/wallet method is configured.
-- Backend latest suite: 253 tests, 251 passed, 0 failed, 2 optional tests skipped. Live health/CORS smoke is green.
-- Mobile debug APK and emulator screenshot are not a signed Play release AAB. Play Console listing, upload-key verification, legal publisher/support details, and real owner-approved catalogue remain outstanding.
+- Backend suite: 253 tests, 251 passed, 0 failed, 2 optional tests skipped. Live health/catalogue/checkout-settings/CORS smoke passed in run 43233324854.
+- Web screenshot artifact contains 12 genuine hosted screenshots: desktop/mobile storefront, product listing/detail, cart, login, support, legal drafts, and admin sign-in. It does not contain an authenticated admin dashboard.
+- Android preview APK and emulator screenshots are being rebuilt/captured; no signed Play release AAB exists yet.
+- Play Console listing, upload-key verification, legal publisher/support details, owner-approved catalogue, physical Android-device acceptance, and owner-assisted authenticated admin acceptance remain outstanding.
