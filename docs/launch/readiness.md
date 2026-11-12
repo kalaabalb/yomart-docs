@@ -38,10 +38,10 @@
 - [ ] Confirm product authenticity, condition, warranty, exact model/storage/color and sale availability.
 - [ ] Provide legal publisher/business name, monitored support email and public business contact/address.
 - [ ] Approve privacy/account deletion retention language. Current implementation pseudonymizes some order/payment records; it does not erase every record.
-- [ ] Confirm cash-on-collection fulfillment meaning: shop pickup, staff handover/delivery, or both.
+- [x] Cash fulfillment wording is configured as shop pickup or direct handover by YoMart staff; public checkout smoke confirms one enabled cash method, no proof requirement and zero delivery fee.
 - [ ] Provide the friend’s Play Console account type/creation date to establish whether the 12-tester/14-day rule applies.
 - [ ] Compare release keystore certificate with Play Console upload-key certificate. Private key/password remain local.
-- [ ] Approve whether the eight synthetic products remain visible to closed testers while actual prices/stock are pending. They must not be sold as real offers.
+- [x] Closed-test preview decision implemented: products remain browseable, illustrative prices/stock are hidden in app and storefront, add-to-cart/checkout are disabled, and the API independently blocks new orders.
 
 ## Play release gates
 
