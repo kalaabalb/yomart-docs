@@ -7,7 +7,7 @@
 
 | Area | Evidence | Status |
 |---|---|---|
-| API runtime | Live smoke workflow [43224380086](https://github.com/kalaabalb/yomart-api/actions/runs/43224380086) passed. Health HTTP 200, success true, production, database connected, Cloudinary image storage and authenticated private proof storage, version 1.0.4. | Verified |
+| API runtime | Live smoke workflow [43224830159](https://github.com/kalaabalb/yomart-api/actions/runs/43224830159) passed. Health HTTP 200, success true, production, database connected, Cloudinary image storage and authenticated private proof storage, version 1.0.4. | Verified |
 | CORS | Same live workflow confirmed HTTP 204 exact allow-origin for customer storefront and admin. | Verified |
 | Checkout guard | Backend source has fail-closed `YOMART_SALES_ENABLED`; production env set to false. API blocks new order creation until owner-approved price/stock data is ready. | Protected |
 | Database | Existing Atlas Free cluster `yomart-staging`, project `YoMart-Staging`, database `yomart_staging`. 20 collections; 1.44 MB. | Active production data store; no separate staging database. |
@@ -16,7 +16,7 @@
 | Payment | One enabled method: Cash at shop or handover; no proof required. | Manual cash at handover; no online gateway or bank/wallet method. |
 | Storefront | [yomart.onrender.com](https://yomart.onrender.com), Render deployment from commit `9575398150b8daa1fe3190556aba9f3904363ad8`. | Staging/noindex preview build. |
 | Admin web | [yomart-admin.onrender.com](https://yomart-admin.onrender.com), commit `5151cbcfd7d51f7e6eccfe4df0894faa9e11da65`. | Staging build. |
-| Web screenshots | [Workflow 43221115390](https://github.com/kalaabalb/yomart-web/actions/runs/43221115390) uploaded genuine 1440x1100 desktop and 390x844 mobile screenshots for storefront and admin. | Captured; rerun after deployment to verify preview notice. |
+| Web screenshots | [Workflow 43225981502](https://github.com/kalaabalb/yomart-web/actions/runs/43225981502) uploaded genuine 1440x1100 desktop and 390x844 mobile screenshots for storefront and admin. | Captured; rerun after deployment to verify preview notice. |
 | Mobile | App ID `com.yomobiles.client`, version `1.0.0+5`, target SDK 36. [Latest preview-mode CI 43222093964](https://github.com/kalaabalb/yomart-mobile/actions/runs/43222093964) is building. | Debug APK/emulator screenshot pending; no signed AAB. |
 | Backend | Inventory reservation lifecycle deployed. Latest suite: 251 tests, 249 passed, 0 failed, 2 optional tests skipped. | Automated checks pass; live transactional checkout intentionally disabled. |
 | Docs | Free-tier decision, production cutover runbook, live database audit and catalogue owner-approval CSV committed. | Updated for production switch. |
@@ -53,4 +53,4 @@
 
 ## Safety boundary
 
-The existing Atlas Free cluster is the production database. Do not run synthetic write tests, stock mutations, dummy orders, fake payment uploads or destructive cleanup against it. Production checkout remains disabled until the owner approves actual prices and stock. No paid infrastructure is authorized.
+Hosted legal drafts: [privacy policy](https://yomart.onrender.com/privacy-policy.html) and [account deletion](https://yomart.onrender.com/account-deletion.html). Both are noindex drafts; the deletion page is wired to the production API but must not be treated as Play-ready until owner/legal approval.\n\nThe existing Atlas Free cluster is the production database. Do not run synthetic write tests, stock mutations, dummy orders, fake payment uploads or destructive cleanup against it. Production checkout remains disabled until the owner approves actual prices and stock. No paid infrastructure is authorized.
