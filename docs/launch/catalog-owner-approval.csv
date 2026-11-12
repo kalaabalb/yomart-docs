@@ -1,9 +1,9 @@
-product_name,current_illustrative_price_etb,current_illustrative_stock,owner_approved_price_etb,owner_confirmed_stock,available_for_sale,notes
-Apple iPhone 16 Pro 512GB,165000,2,,,,
-Apple iPhone 16 Pro 256GB,145000,5,,,,
-Samsung Galaxy S24 256GB,92000,4,,,,
-Samsung Galaxy S24 128GB,84000,3,,,,
-Apple MacBook Air M2,118000,2,,,,
-Apple iPad Air M2 11-inch,68000,4,,,,
-Apple AirPods Pro 2,12500,7,,,,
-Apple Watch Series 10,42000,3,,,,
+product_name,current_illustrative_price_etb,current_illustrative_stock,owner_confirmed_exact_model,condition,warranty,owner_approved_price_etb,owner_confirmed_stock,available_for_sale,owner_notes
+Apple iPhone 16 Pro 512GB,165000,2,,,,,,,
+Apple iPhone 16 Pro 256GB,145000,5,,,,,,,
+Samsung Galaxy S24 256GB,92000,4,,,,,,,
+Samsung Galaxy S24 128GB,84000,3,,,,,,,
+Apple MacBook Air M2,118000,2,,,,,,,
+Apple iPad Air M2 11-inch,68000,4,,,,,,,
+Apple AirPods Pro 2,12500,7,,,,,,,
+Apple Watch Series 10,42000,3,,,,,,,
