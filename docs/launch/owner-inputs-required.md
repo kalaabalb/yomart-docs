@@ -24,7 +24,7 @@ Do not publish the pages as final until these details and statements are approve
 
 Never paste keystore passwords, the keystore file, access tokens or Play Console credentials into chat or public documentation.
 
-In the `kalaabalb/yomart-mobile` GitHub repository, add these under **Settings → Secrets and variables → Actions → Secrets**:
+In the `kalaabalb/yomart-mobile` GitHub repository, add these under **Settings → Secrets and variables → Actions → Secrets**. Generate the keystore secret locally from the existing ignored keystore file with `base64 -w 0 /path/to/the-existing-release-keystore.jks`, then paste that output directly into the GitHub secret field. Do not paste it into chat, terminal screenshots, or a committed file:
 
 - `ANDROID_KEYSTORE_BASE64`
 - `ANDROID_STORE_PASSWORD`
