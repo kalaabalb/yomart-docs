@@ -17,6 +17,8 @@ The former staging Atlas Free cluster/database has been converted into the activ
 
 **Do not treat this as a safe transactional test environment.** Do not ask testers to create dummy purchases, cancel orders, upload receipts, test stock reservation, or enter real personal/payment details until the owner approves actual catalogue data and the test journey. A closed test can begin with install, launch, browsing, visual feedback and non-destructive account tests; transactional purchase testing needs a separately isolated free staging target or an explicitly approved controlled live process.
 
+See [owner inputs required](owner-inputs-required.md) for the legal publisher details, Play signing secrets, upload-key verification and account information still needed.
+
 ## Before inviting testers
 
 - [ ] Upload the signed release AAB to an internal/closed track (not a debug APK).
