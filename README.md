@@ -16,6 +16,7 @@ Operational, technical, release, and tester documentation for the YoMart API, cu
 - [Launch readiness and release gates](docs/launch/readiness.md)
 - [Staging acceptance plan](docs/launch/staging-acceptance.md) — historical template only; do not run against the active production database.
 - [Closed-testing playbook](docs/launch/closed-testing-playbook.md)
+- [Play Store closed-test listing draft](docs/launch/play-store-listing-preview.md)
 - [Staging catalogue and screenshot evidence](docs/launch/staging-catalog-and-screenshot-evidence.md)
 - [Free-tier production decision](docs/launch/free-tier-production-decision.md)
 - [Production cutover runbook](docs/launch/production-cutover-runbook.md)
