@@ -41,6 +41,6 @@ Operational, technical, release, and tester documentation for the YoMart API, cu
 - Admin and customer static sites remain staging/noindex builds. The customer storefront displays a preview-catalogue notice in non-production mode.
 - Active catalogue has 8 synthetic products with illustrative prices/stock, 2 inactive historical test products, 4 categories, 4 subcategories, 2 brands, 2 collections and 2 posters. All active products remain unverified for public search. Do not sell these as real offers.
 - Live database audit found 0 orders and 0 payment-proof records. One admin account and one customer account exist; personal identifiers and credentials are excluded from documentation.
-- Cash on collection is the only configured payment method. No online gateway or bank/wallet method is configured.
+- Cash at shop or handover is the only configured payment method. No online gateway or bank/wallet method is configured.
 - Backend latest suite: 253 tests, 251 passed, 0 failed, 2 optional tests skipped. Live health/CORS smoke is green.
 - Mobile debug APK and emulator screenshot are not a signed Play release AAB. Play Console listing, upload-key verification, legal publisher/support details, and real owner-approved catalogue remain outstanding.
