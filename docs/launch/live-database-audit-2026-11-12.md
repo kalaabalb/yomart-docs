@@ -52,7 +52,7 @@ No customer orders or payment proofs exist. One admin account and one customer a
 - Their `catalogSource.note` identifies prices and stock as synthetic review data, not retail offers. Their generic staging-only descriptions were cleared so the customer detail page does not present fake specifications.
 - Product price and quantity fields remain illustrative. They are not owner-approved selling prices or verified available stock.
 - The checkout settings record has one enabled payment method: Cash on collection.
-- It requires no payment proof. The method text says payment is made to YoMart staff when the customer receives the order.
+- It requires no payment proof. The method text says customers may pay cash at shop pickup or directly to YoMart staff when they hand over the order.
 - No bank transfer or online payment gateway is configured.
 - New order creation is blocked at the API until the owner explicitly enables sales after approving prices and stock.
 - Public `GET /products` and `GET /products/:id` responses omit `price`, `offerPrice`, and `quantity` while sales are disabled. Authenticated admin product responses retain these fields. Live production smoke verifies both public catalog endpoints.
