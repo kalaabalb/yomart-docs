@@ -38,7 +38,7 @@ Operational, technical, release, and tester documentation for the YoMart API, cu
 - Production health: HTTP 200, success true, environment production, database connected, Cloudinary image storage, authenticated private payment-proof storage, version 1.0.4.
 - CORS preflight: HTTP 204 with exact allow-origin for both customer storefront and admin.
 - Hosted noindex legal drafts are available at [privacy policy](https://yomart.onrender.com/privacy-policy.html) and [account deletion](https://yomart.onrender.com/account-deletion.html); publisher/support details and retention wording are not finalized.
-- Production checkout is explicitly disabled with `YOMART_SALES_ENABLED=false`; new orders fail closed until owner-approved prices and stock are configured. Public catalog APIs also omit synthetic price and quantity fields.
+- Production checkout is fail-closed: with `NODE_ENV=production`, the API defaults sales to disabled unless `YOMART_SALES_ENABLED=true` is deliberately set. Keep it false or unset until owner-approved prices and stock are configured. Public catalog APIs also omit synthetic price and quantity fields.
 - Admin and customer static sites remain staging/noindex builds. The customer storefront displays a preview-catalogue notice in non-production mode.
 - Active catalogue has 8 synthetic products with illustrative prices/stock, 2 inactive historical test products, 4 categories, 4 subcategories, 2 brands, 2 collections and 2 posters. All active products remain unverified for public search. Do not sell these as real offers.
 - Live database audit found 0 orders and 0 payment-proof records. One admin account and one customer account exist; personal identifiers and credentials are excluded from documentation.
