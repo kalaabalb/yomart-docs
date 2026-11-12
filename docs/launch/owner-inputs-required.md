@@ -12,9 +12,9 @@ A real transactional test or public sales launch additionally requires owner-app
 
 Supply the exact details to publish in the privacy policy and account-deletion page:
 
-- Legal publisher/business name (must match the responsible Play developer identity).
+- Legal person/entity responsible for YoMart and the public developer/publisher name if different; tell us which name should appear in the policy.
 - Customer support email that is monitored.
-- Public business contact details/address required for the policy.
+- Public business contact details/address and the country/jurisdiction the business operates under.
 - Owner-approved retention period and legal basis for keeping pseudonymized order/payment evidence after account deletion.
 - Confirmation that the described deletion behavior is acceptable: sign-in is disabled; direct profile/contact/delivery identifiers and reviews are removed; some order/payment records may remain pseudonymized; the customer loses access to order history and receipts.
 
@@ -39,7 +39,7 @@ The existing local upload keystore must match the upload certificate registered 
 
 Confirm whether the friend's developer account is **Personal** or **Organization**, and when it was created. New personal accounts created after 13 November 2023 need at least 12 testers opted in continuously for 14 days before applying for production access. Fourteen available testers provide a buffer, but the actual opt-in timestamps must be tracked.
 
-The Android package ID is currently `com.yomobiles.client`. Confirm that this is the package ID intended for the friend's Play Console app before the first upload.
+The Android package ID is currently `com.yomobiles.client`. Confirm that this is the package ID intended for the friend's Play Console app, whether any version has already been uploaded, and the highest version code already used (the current source version is `1.0.0+5`).
 
 ## Owner-assisted acceptance evidence
 
