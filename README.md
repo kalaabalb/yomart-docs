@@ -1,8 +1,8 @@
 # YoMart Documentation
 
-Public operating and implementation documentation for the YoMart API, customer storefront, administrator dashboard, and Flutter customer app.
+Operational, technical, release, and tester documentation for the YoMart API, customer storefront, administrator dashboard, and Flutter Android app.
 
-> **Status snapshot: 5 November 2026.** The API and admin have published repositories and are reported as deployed. The React customer storefront is published at [`kalaabalb/yomart-web`](https://github.com/kalaabalb/yomart-web), commit `f7f2350cbdb50beb4b4ad774a91b82eb4f5f666e`; its Render deployment has not been verified. The service URLs below are deployment addresses, not proof that the corresponding backend environment is production. No production customer-site origin has been confirmed.
+**Snapshot: 12 November 2026.** The customer storefront and admin static sites are deployed on Render. The API deployment is live and reports the staging environment; do not treat the Render environment label as proof of production. Android checkout compatibility work is in CI; a debug build is not a Play Store release.
 
 ## Start here
 
@@ -13,31 +13,29 @@ Public operating and implementation documentation for the YoMart API, customer s
 - [Security and privacy](docs/security.md)
 - [Customer workflow](docs/workflows/customer.md)
 - [Administrator workflow](docs/workflows/admin.md)
-- [Launch readiness and blockers](docs/launch/readiness.md)
+- [Launch readiness and release gates](docs/launch/readiness.md)
 - [Staging acceptance plan](docs/launch/staging-acceptance.md)
+- [Closed-testing playbook for 14 testers / 15 days](docs/launch/closed-testing-playbook.md)
 
-## Repositories and current service addresses
+## Repositories and deployed addresses
 
-| Component | Source repository | Current address/status |
+| Component | Source | Current address / evidence |
 |---|---|---|
-| API | [yomart-api](https://github.com/kalaabalb/yomart-api) | [`https://yomart-api.onrender.com`](https://yomart-api.onrender.com), reported deployed; environment classification and runtime health must be checked before each acceptance window. |
-| React admin | [yomart-admin](https://github.com/kalaabalb/yomart-admin) | [`https://yomart-admin.onrender.com`](https://yomart-admin.onrender.com), reported deployed; runtime behavior is not independently established by this documentation publication. |
-| React customer storefront | [yomart-web](https://github.com/kalaabalb/yomart-web) | Requested address [`https://yomart.onrender.com`](https://yomart.onrender.com) is **not confirmed as assigned or deployed**. |
-| Flutter customer app | [yomoblies](https://github.com/kalaabalb/yomoblies) | Android client; Play Store release is a separate process. |
+| API | [yomart-api](https://github.com/kalaabalb/yomart-api) | [yomart-api.onrender.com](https://yomart-api.onrender.com) — Render deployment at commit `0371cbd01fb7b40df05391c49cedd58f3ea1736f`; API health previously reported staging and connected database. |
+| Admin | [yomart-admin](https://github.com/kalaabalb/yomart-admin) | [yomart-admin.onrender.com](https://yomart-admin.onrender.com) — Render static site. |
+| Customer storefront | [yomart-web](https://github.com/kalaabalb/yomart-web) | [yomart.onrender.com](https://yomart.onrender.com) — Render static site. |
+| Android app | [yomart-mobile](https://github.com/kalaabalb/yomart-mobile) | Flutter app, application ID `com.yomobiles.client`. Checkout compatibility fix is being verified in GitHub Actions; no signed Play upload AAB is certified here. |
+| Documentation | [yomart-docs](https://github.com/kalaabalb/yomart-docs) | This repository. |
 
-The React storefront build and documentation publishing checks are local/repository checks. They do not constitute a live checkout, Cloudinary privacy, database backup, or Google indexing acceptance test.
+## Current release boundary
 
-## Important release gates
+- The API's current environment is **staging**. Testers must use staging data and must not enter real payment details, real receipts, or sensitive personal information.
+- The staging catalog currently contains clearly labelled synthetic test records. Replace or extend these only with owner-approved, accurately described listings and images before inviting external testers.
+- Cash on collection is configured in staging. This is manual payment, not an online payment gateway.
+- Android CI must pass on the final PR head and produce a verified artifact before merge. A debug APK is not a Play upload AAB.
+- A signed release AAB, upload-key verification, Play Console listing/declarations, privacy and account-deletion URLs, and closed-test setup are separate gates.
+- For new personal Play developer accounts created after 13 November 2023, Google requires at least 12 testers continuously opted in to a closed test for 14 days before applying for production access. Recruiting 14 gives a two-person buffer; it does not replace the continuous opt-in requirement.
 
-- Legacy payment-proof Cloudinary assets may still be publicly accessible through old URLs. Hiding those URLs in API responses does not revoke the assets. Do not accept real receipts until restriction/migration and anonymous denial are verified.
-- Cloudinary original/derived access, temporary signed retrieval and expiry must be verified using a synthetic asset in the authorized staging cloud. Do not assume SDK behavior proves provider behavior.
-- Payment-evidence retention and account-deletion wording require owner/legal approval. Retention variables must remain unset until approved; orders/payment evidence are anonymized and retained by account deletion, not erased.
-- The current product API has no safe per-variant price/stock contract. Products with configured variants are blocked from online purchase until that contract is implemented.
-- Storefront site URL, production API/site origin inventory, exact CORS entries, billing safeguards, backup/restore, and hosted acceptance need explicit verification. Never infer production origins from historical records.
-- Current application code provides no payment gateway integration. COD/manual payment review is not equivalent to automated payment processing.
+## Evidence conventions
 
-## Documentation conventions
-
-“Code verified” means a behavior was confirmed in published source/tests. “Owner-reported” is information supplied by the project owner. “Staging required” means a provider- or browser-level check is still needed. “Production blocked” marks a release gate, not a claim that a production environment currently exists.
-
-This documentation repository does not yet declare a license. Public visibility alone does not grant permission to reuse its contents; select a license before encouraging reuse.
+Every readiness statement must name its evidence and date. Distinguish source/test evidence, provider deployment evidence, staging acceptance, owner/legal decisions, and Play Console state. Never label the product production-ready from a successful build alone.
