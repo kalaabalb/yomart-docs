@@ -42,7 +42,7 @@ The existing database is now the active production data store. Its historical na
 
 - MongoDB Atlas: existing cluster is Free tier; no M10/Flex or paid cluster was created.
 - Render API service: plan=free, one instance. Customer storefront and admin are Render static sites.
-- Cloudinary: account plan Free; usage report dated 11 November shows 0.21 of 25 credits used (0.84%), 75 assets, approximately 178.6 MB storage, approximately 18.5 MB bandwidth, 170 requests and 19 transformations.
+- Cloudinary: account plan Free. The 11 November usage report returned 0.17 of 25 credits used and approximately 177.7 MB storage; no paid add-on was enabled.
 - No paid resource or paid add-on was enabled as part of this cutover.
 
 ## Free-tier limitations
