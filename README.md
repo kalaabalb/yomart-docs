@@ -21,6 +21,7 @@ Operational, technical, release, and tester documentation for the YoMart API, cu
 - [Production cutover runbook](docs/launch/production-cutover-runbook.md)
 - [Live database audit, 12 November 2026](docs/launch/live-database-audit-2026-11-12.md)
 - [Product catalogue owner-approval template](docs/launch/catalog-owner-approval.csv)
+- [Owner inputs required for legal approval and Play signing](docs/launch/owner-inputs-required.md)
 
 ## Repositories and deployed addresses
 
