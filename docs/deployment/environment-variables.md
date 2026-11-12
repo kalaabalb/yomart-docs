@@ -9,8 +9,10 @@ Names verified from the published backend `.env.example` and source:
 | Variable | Purpose | Handling |
 |---|---|---|
 | `NODE_ENV` | Runtime mode; `production` activates production checks. | Public mode value. |
+| `PLATFORM` | Operator-facing platform label reported by health; currently `Production`. | Public label. |
+| `YOMART_SALES_ENABLED` | Explicit sales/checkout switch. Set `false` to block new order creation; set `true` only after owner-approved prices/stock and controlled checkout acceptance. In production/staging, an unset value fails closed. | Public boolean policy setting; current production value is `false`. |
 | `PORT` | HTTP listen port, host-injected on Render. | Public runtime setting. |
-| `MONGO_URL` | MongoDB connection URI/database target. | **Secret.** Use a separate least-privilege staging DB user and synthetic database. |
+| `MONGO_URL` | MongoDB connection URI/database target. | **Secret.** Current production uses the existing Atlas Free database; do not assume a separate staging database exists. |
 | `JWT_SECRET` | Signs customer/admin JWTs. Production code requires at least 32 random bytes. | **Secret.** Unique per environment. |
 | `JWT_EXPIRES_IN`, `ADMIN_JWT_EXPIRES_IN` | Customer/admin token expiry. | Public policy settings. |
 | `ADMIN_USERNAME`, `ADMIN_NAME`, `ADMIN_EMAIL`, `ADMIN_PASSWORD` | Optional controlled first-admin bootstrap inputs. Bootstrap is a database write; do not enable on an existing environment or assume startup should create an account. | Identity is private; password is **secret**. |
