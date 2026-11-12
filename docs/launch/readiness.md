@@ -1,7 +1,7 @@
 # YoMart launch readiness
 
 **Updated:** 12 November 2026  
-**Disposition:** API is live in production on the existing Atlas Free cluster; live health and CORS checks pass. Checkout is deliberately blocked until real catalogue prices and stock are approved. Storefront/admin are deployed preview builds, not public-sales builds. Genuine web screenshots and a debug APK artifact exist. Android emulator screenshot capture is being stabilized. No signed Play AAB or Play test release exists.
+**Disposition:** API is live in production on the existing Atlas Free cluster; live health and CORS checks pass. Checkout is deliberately blocked until real catalogue prices and stock are approved. Storefront/admin are deployed preview builds, not public-sales builds. Genuine web screenshots and Playwright interaction checks pass. The latest Android debug build/screenshot run is still in progress; no current APK artifact or Android screenshot is claimed yet. No signed Play AAB or Play test release exists.
 
 ## Verified state
 
@@ -14,7 +14,7 @@
 | Data | 10 products (8 active, 2 inactive), 4 categories, 4 subcategories, 2 brands, 2 collections, 2 posters, 1 admin account, 1 customer account, 1 settings record, 0 orders, 0 payment proofs. | No real order/payment evidence yet. No fake records created. |
 | Catalogue | All 8 active products have `isSearchVerified:false` and source notes explicitly mark prices/stock as synthetic. | Do not sell or index these as verified offers until owner approves prices/stock. |
 | Payment | One enabled method: Cash at shop or handover; no proof required. | Manual cash at handover; no online gateway or bank/wallet method. |
-| Storefront | [yomart.onrender.com](https://yomart.onrender.com), latest verified deployment commit `c0aecd43b58f4780b8ecd43aa6c2ca7f866950f3`. | Preview catalogue notice is visible; ordering is unavailable. Not approved as a sales storefront. |
+| Storefront | [yomart.onrender.com](https://yomart.onrender.com), latest verified deployment commit `f0294e710c37967a5cc09a47cfe689bbe081eadf`. | Preview catalogue notice is visible; ordering is unavailable. Not approved as a sales storefront. |
 | Admin web | [yomart-admin.onrender.com](https://yomart-admin.onrender.com), latest verified deployment commit `dbe80bc26f718e2c54dae4446811936e9c771ba2`. | Deployed; sign-in screen screenshot captured. Authenticated dashboard/role flows still need owner-assisted acceptance. |
 | Web screenshots | [Workflow 43227841647](https://github.com/kalaabalb/yomart-web/actions/runs/43227841647) artifact `yomart-live-web-screenshots` contains genuine desktop/mobile storefront, product, cart, login, support, legal-draft and admin sign-in screenshots. | Captured from hosted sites; admin artifact is sign-in only, not authenticated dashboard. |
 | Mobile | App ID `com.yomobiles.client`, version `1.0.0+5`, target SDK 36. [Debug APK artifact run 43226005733](https://github.com/kalaabalb/yomart-mobile/actions/runs/43226005733) is available (83.2 MB). Latest CI after emulator config fix: [run 43227075413](https://github.com/kalaabalb/yomart-mobile/actions/runs/43227075413). | Format, analyze, tests passed and debug APK built in the preceding run; screenshot step had emulator boot timeout. Retried with API 34 / GPU off; no signed AAB. |
@@ -26,7 +26,7 @@
 - [ ] Verify admin login, customer registration/login and admin role restrictions after runtime switch (requires authorized account credentials and a controlled browser session).
 - [x] Capture hosted storefront/admin sign-in screenshots at desktop and mobile widths; preview catalogue notice is visible.
 - [ ] Capture authenticated admin dashboard and all role-protected admin pages after an authorized owner login.
-- [ ] Verify Android emulator screenshot artifact after run 43227362300 completes; prior emulator boot timed out, so the screenshot artifact is not yet available.
+- [ ] Verify Android debug APK and emulator startup/login screenshot artifacts after run 43228782612 completes.
 - [ ] Physical Android-device acceptance is still required.
 - [ ] Verify private payment-proof upload/retrieval authorization only under a controlled test plan; do not use real receipts.
 - [ ] Confirm Free-tier storage/availability constraints and export/restore process.
