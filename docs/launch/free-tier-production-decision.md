@@ -16,7 +16,7 @@ Decision: use the existing MongoDB Atlas Free cluster. No paid M10, Flex, or oth
 The Render API was changed to `NODE_ENV=production` and `PLATFORM=Production` using a merge-only environment update. Existing secrets and unrelated variables were not replaced.
 
 - Production checkout protection was deployed, with `YOMART_SALES_ENABLED=false`.
-- Live production smoke workflow [43224380086](https://github.com/kalaabalb/yomart-api/actions/runs/43224380086) passed.
+- Live production smoke workflow [43224830159](https://github.com/kalaabalb/yomart-api/actions/runs/43224830159) passed.
 - Live `GET /health`: HTTP 200, `success:true`, environment `production`, platform `Production`, database `connected`, Cloudinary image storage and authenticated private payment-proof storage, version `1.0.4`.
 - Exact CORS preflights: HTTP 204 for both `https://yomart.onrender.com` and `https://yomart-admin.onrender.com`.
 
