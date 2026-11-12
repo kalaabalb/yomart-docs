@@ -36,12 +36,22 @@ The current Cloudinary account stores product images in `products/`, category im
 
 ## Genuine screenshot evidence
 
-The hosted web screenshot artifact is available from [Customer Storefront CI run 43229601660](https://github.com/kalaabalb/yomart-web/actions/runs/43225981502). It contains real desktop/mobile captures of the hosted storefront, product listing/detail, cart, login, support, privacy/account-deletion drafts, and admin sign-in screen.
+The hosted web screenshot artifact is available from [Customer Storefront CI run 43229601660](https://github.com/kalaabalb/yomart-web/actions/runs/43229601660). Artifact 13951200004 contains 12 genuine PNG captures of the deployed sites:
+- Storefront desktop and mobile home
+- Product listing desktop and mobile
+- Product detail mobile
+- Cart mobile
+- Customer login mobile
+- Support desktop
+- Privacy-policy draft desktop
+- Account-deletion draft mobile
+- Admin sign-in desktop and mobile
 
 Important scope limits:
-- The admin screenshot is the sign-in page, not an authenticated admin dashboard.
+- The admin screenshots are the sign-in page, not an authenticated admin dashboard.
 - These screenshots show the preview-catalogue state, not an approved live-sales experience.
-- The Android debug APK artifact is available from [mobile CI run 43232114915](https://github.com/kalaabalb/yomart-mobile/actions/runs/43232114915). Android emulator screenshot capture is being retried after a CI emulator boot timeout.
+- Android preview APK is being rebuilt in [mobile CI run 43232961622](https://github.com/kalaabalb/yomart-mobile/actions/runs/43232961622). It now targets the production API with preview-only catalogue mode. Wait for this run's APK artifact; the older artifact from run 43229794520 used the local 127.0.0.1 API default and must not be used for external-device testing.
+- Android emulator screenshot capture has a bounded timeout and is optional to the code/test/debug-build result; if the hosted emulator cannot boot, physical-device screenshots will still be required.
 - Physical Android-device acceptance remains outstanding.
 
 ## Safety rules
