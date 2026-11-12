@@ -45,9 +45,9 @@ The Android package ID is currently com.yomobiles.client. Confirm that this is t
 
 The hosted web screenshot pack captures the storefront and admin sign-in page. The authenticated admin dashboard and protected pages cannot be captured without an authorized session.
 
-The new preview-only Android build is in [mobile CI run 43232961622](https://github.com/kalaabalb/yomart-mobile/actions/runs/43232961622). It is configured to connect to the production API and keep prices/stock hidden and ordering disabled. Wait for the workflow's APK artifact before installing it. Do not use the older debug artifact from run 43229794520; that build used the local 127.0.0.1 API default and is not suitable for external-device testing.
+The preview-only Android debug APK is now available from [mobile CI run 43232961622](https://github.com/kalaabalb/yomart-mobile/actions/runs/43232961622), artifact 13950889093. It is configured to connect to the production API and keep prices/stock hidden and ordering disabled. This is a debug build for sideload acceptance only, not a signed Play AAB. The emulator screenshot step is still running. Do not use the older debug artifact from run 43229794520; that build used the local 127.0.0.1 API default and is not suitable for external-device testing.
 
-Sign in yourself at [yomart-admin.onrender.com](https://yomart-admin.onrender.com) and provide sanitized screenshots of the dashboard, product list/detail, order list, payment settings and other important admin pages. Do not send passwords or customer personal data. Also install the eventual closed-test build on a real Android device and report any launch, login, navigation or layout failures.
+Sign in yourself at [yomart-admin.onrender.com](https://yomart-admin.onrender.com) and provide sanitized screenshots of the dashboard, product list/detail, order list, payment settings and other important admin pages. Do not send passwords or customer personal data. Also install the preview APK on a real Android device and report any launch, login, navigation or layout failures.
 
 ## Safe handling
 
