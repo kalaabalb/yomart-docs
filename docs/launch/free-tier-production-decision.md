@@ -13,18 +13,19 @@ Decision: use the existing MongoDB Atlas Free cluster. No paid M10, Flex, or oth
 
 ## Runtime conversion and live verification
 
-The Render API was changed to `NODE_ENV=production` and `PLATFORM=Production` using merge-only environment updates. Existing secrets and unrelated variables were not replaced.
+The Render API was changed to NODE_ENV=production and PLATFORM=Production using merge-only environment updates. Existing secrets and unrelated variables were not replaced.
 
-- `YOMART_SALES_ENABLED=false` is explicitly set in Render; new order creation remains disabled until actual prices and stock are owner-approved.
-- Production deployment `dep-dbqscvjm8hqs73eo6p50` confirmed production runtime and MongoDB connection. The latest documentation-only API deployment `dep-dbqsegivcj2c73fcukh0` also went live and startup logs again confirmed production and MongoDB connected.
+- YOMART_SALES_ENABLED=false is explicitly set in Render; new order creation remains disabled until actual prices and stock are owner-approved.
+- Production deployment dep-dbqscvjm8hqs73eo6p50 went live at 14:01:49 UTC on 12 November. Startup logs confirmed production runtime and MongoDB connection. The latest documentation-only API deployment dep-dbqsegivcj2c73fcukh0 also went live and startup logs again confirmed production and MongoDB connected.
 - Live production smoke [workflow 43233076575](https://github.com/kalaabalb/yomart-api/actions/runs/43233076575) passed after the explicit sales-flag deployment.
-- Live `GET /health`: HTTP 200, `success:true`, environment `production`, platform `Production`, database `connected`, Cloudinary image storage and authenticated private payment-proof storage, version `1.0.4`.
+- The subsequent API README deployment was also verified by [workflow 43233324854](https://github.com/kalaabalb/yomart-api/actions/runs/43233324854), which passed the same live smoke after that deployment.
+- Live GET /health: HTTP 200, success:true, environment production, platform Production, database connected, Cloudinary image storage and authenticated private payment-proof storage, version 1.0.4.
 - Public catalogue smoke verified 8 products and confirmed illustrative price/stock fields are omitted from both list and detail responses.
 - Public checkout settings verified one enabled method: cash at shop or handover; proof not required; delivery fee zero.
-- Exact CORS preflights returned HTTP 204 for both `https://yomart.onrender.com` and `https://yomart-admin.onrender.com`.
+- Exact CORS preflights returned HTTP 204 for both https://yomart.onrender.com and https://yomart-admin.onrender.com.
 - Backend suite: 253 tests, 251 passed, 0 failed, 2 optional tests skipped.
 
-The existing database is now the active production data store. Its historical name may remain `yomart_staging`; do not rename it solely for appearance or create a paid replacement.
+The existing database is now the active production data store. Its historical name may remain yomart_staging; do not rename it solely for appearance or create a paid replacement.
 
 ## Current business and release boundary
 
@@ -33,14 +34,15 @@ The existing database is now the active production data store. Its historical na
 - Cash at shop or handover is the only configured method; no online gateway or bank/wallet method exists.
 - There are zero orders and zero payment-proof records. No fake orders or receipts were created.
 - Customer storefront and admin remain staging/noindex builds while catalogue and legal details are pending.
-- Genuine hosted desktop/mobile storefront and admin sign-in screenshots are captured in the [web CI artifact from run 43229601660](https://github.com/kalaabalb/yomart-web/actions/runs/43229601660). Authenticated admin pages are not included because an authorized owner session is required.
-- Android preview build and emulator screenshot are being rebuilt in [mobile CI run 43232961622](https://github.com/kalaabalb/yomart-mobile/actions/runs/43232961622). The CI now targets the production API in preview-only mode and bounds optional emulator screenshot capture time.
+- Genuine hosted desktop/mobile storefront and admin sign-in screenshots are captured in [web CI artifact from run 43229601660](https://github.com/kalaabalb/yomart-web/actions/runs/43229601660). Authenticated admin pages are not included because an authorized owner session is required.
+- Split-ABI Android preview APKs are available in [mobile run 43234715460, artifact 13951718520](https://github.com/kalaabalb/yomart-mobile/actions/runs/43234715460). The APKs target the production API with preview-only catalogue mode and are debug-signed for sideload acceptance, not Play submission.
+- The Android emulator screenshot job in that run failed because the GitHub-hosted emulator never reported sys.boot_completed. No Android screenshot artifact exists; capture app screenshots on a physical device.
 
 ## Free-tier usage snapshot — 12 November 2026
 
 - MongoDB Atlas: existing cluster is Free tier; no M10/Flex or paid cluster was created.
-- Render API service: `plan=free`, one instance. Customer storefront and admin are Render static sites.
-- Cloudinary: account plan `Free`; usage report dated 11 November shows 0.21 of 25 credits used (0.84%), 75 assets, approximately 178.6 MB storage, approximately 18.5 MB bandwidth, 170 requests and 19 transformations.
+- Render API service: plan=free, one instance. Customer storefront and admin are Render static sites.
+- Cloudinary: account plan Free; usage report dated 11 November shows 0.21 of 25 credits used (0.84%), 75 assets, approximately 178.6 MB storage, approximately 18.5 MB bandwidth, 170 requests and 19 transformations.
 - No paid resource or paid add-on was enabled as part of this cutover.
 
 ## Free-tier limitations
@@ -55,7 +57,7 @@ Atlas Free has constrained storage, compute, backup and availability; Render Fre
 - Add the Android signing secrets and final privacy URL variable described in [owner inputs required](owner-inputs-required.md); compare the resulting certificate with the Play Console upload-key certificate.
 - Confirm package ID/version availability in the friend's Play Console.
 - Confirm Play developer account type and creation date to establish whether the 12-tester/14-day rule applies.
-- Install the build on a physical Android device and complete owner-assisted admin acceptance.
+- Install the arm64 preview APK on a physical Android device and complete owner-assisted admin acceptance.
 
 ## Explicit non-actions
 
