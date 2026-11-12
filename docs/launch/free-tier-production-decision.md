@@ -31,9 +31,16 @@ The existing database is now the active production data store. Its historical na
 - Customer storefront and admin remain staging/noindex builds while catalogue and legal details are pending.
 - Real desktop/mobile screenshots for storefront and admin have been captured. Android emulator screenshot workflow is still in progress.
 
+## Free-tier usage snapshot — 12 November 2026
+
+- MongoDB Atlas: existing cluster is Free tier; no M10/Flex or paid cluster was created.
+- Render API service: `plan=free`, one instance. Customer storefront and admin are Render static sites.
+- Cloudinary: account plan `Free`; usage report dated 11 November shows 0.21 of 25 credits used (0.84%), 75 assets, approximately 178.6 MB storage, approximately 18.5 MB bandwidth, 170 requests and 19 transformations.
+- No paid resource or paid add-on was enabled as part of this cutover.
+
 ## Free-tier limitations
 
-Atlas Free has constrained storage, compute, backup and availability. Monitor usage and export important data regularly. Do not enable paid resources, auto-overages or paid add-ons.
+Atlas Free has constrained storage, compute, backup and availability; Render Free may sleep/cold-start; Cloudinary Free has finite credit, storage and bandwidth allowances. Monitor usage and export important data regularly. Do not enable paid resources, auto-overages or paid add-ons.
 
 ## Remaining owner decisions and release gates
 
