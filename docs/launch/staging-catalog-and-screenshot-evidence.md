@@ -36,7 +36,7 @@ The current Cloudinary account stores product images in `products/`, category im
 
 ## Genuine screenshot evidence
 
-The hosted web screenshot artifact is available from [Customer Storefront CI run 43225981502](https://github.com/kalaabalb/yomart-web/actions/runs/43225981502). It contains real desktop/mobile captures of the hosted storefront, product listing/detail, cart, login, support, privacy/account-deletion drafts, and admin sign-in screen.
+The hosted web screenshot artifact is available from [Customer Storefront CI run 43229601660](https://github.com/kalaabalb/yomart-web/actions/runs/43225981502). It contains real desktop/mobile captures of the hosted storefront, product listing/detail, cart, login, support, privacy/account-deletion drafts, and admin sign-in screen.
 
 Important scope limits:
 - The admin screenshot is the sign-in page, not an authenticated admin dashboard.
