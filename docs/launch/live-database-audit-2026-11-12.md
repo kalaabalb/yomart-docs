@@ -10,7 +10,7 @@ Scope: active Atlas Free cluster currently used by the Render API.
 - Database: `yomart_staging` (historical name retained; do not rename during cutover).
 - Render API: `https://yomart-api.onrender.com`.
 - Runtime: `NODE_ENV=production`, `PLATFORM=Production`.
-- Live health and CORS smoke workflow [43222001537](https://github.com/kalaabalb/yomart-api/actions/runs/43222001537) passed at 12 November 2026 12:53 UTC.
+- Live health and CORS smoke workflow [43224380086](https://github.com/kalaabalb/yomart-api/actions/runs/43224380086) passed at 12 November 2026 12:53 UTC.
 - Live `GET /health`: HTTP 200, `success:true`, `environment:production`, `platform:Production`, `database:connected`, Cloudinary image storage, authenticated Cloudinary private payment-proof storage, app version `1.0.4`.
 - CORS preflight returned HTTP 204 with exact allow-origin for `https://yomart.onrender.com` and `https://yomart-admin.onrender.com`.
 - Production checkout is disabled using `YOMART_SALES_ENABLED=false` until real prices and stock are owner-approved.
@@ -55,6 +55,7 @@ No customer orders or payment proofs exist. One admin account and one customer a
 - It requires no payment proof. The method text says payment is made to YoMart staff when the customer receives the order.
 - No bank transfer or online payment gateway is configured.
 - New order creation is blocked at the API until the owner explicitly enables sales after approving prices and stock.
+- Public `GET /products` and `GET /products/:id` responses omit `price`, `offerPrice`, and `quantity` while sales are disabled. Authenticated admin product responses retain these fields. Live production smoke verifies both public catalog endpoints.
 
 ## Required release treatment
 
