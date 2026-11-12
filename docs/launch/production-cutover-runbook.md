@@ -29,7 +29,7 @@ The historical database name remains `yomart_staging`; it is not a separate stag
 - 8 active synthetic catalogue products, 2 inactive historical test fixtures, 4 categories, 4 subcategories, 2 brands, 2 collections, 2 posters.
 - One admin account and one customer account.
 - Zero orders and zero payment-proof records.
-- One enabled payment method: Cash on collection; no proof required, zero delivery fee. No online gateway or bank/wallet method.
+- One enabled payment method: Cash at shop or handover; no proof required, zero delivery fee. No online gateway or bank/wallet method.
 
 Never present sample prices/stock as real sale offers. Do not fabricate customers, orders, reviews, payment proofs or tester activity.
 
