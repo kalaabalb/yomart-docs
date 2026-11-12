@@ -18,6 +18,8 @@ Supply the exact details to publish in the privacy policy and account-deletion p
 - Owner-approved retention period and legal basis for keeping pseudonymized order/payment evidence after account deletion.
 - Confirmation that the described deletion behavior is acceptable: sign-in is disabled; direct profile/contact/delivery identifiers and reviews are removed; some order/payment records may remain pseudonymized; the customer loses access to order history and receipts.
 
+Google Play requires a public, globally accessible privacy policy linked both in the Play listing and inside the app. It also requires an accessible account-deletion path for apps with account creation, and associated user data must be deleted except data retained for legitimate reasons that are clearly disclosed. Review the official [Google Play User Data policy](https://support.google.com/googleplay/android-developer/answer/10144311). This is why the current pseudonymized order/payment retention needs your explicit legal/business approval before the pages are final.
+
 Do not publish the pages as final until these details and statements are approved.
 
 ## Android signing and Play Console
@@ -37,7 +39,7 @@ Add this repository variable:
 
 The existing local upload keystore must match the upload certificate registered in the friend's Play Console. Compare its SHA-256 fingerprint with **Play Console → Setup → App integrity → Upload key certificate**. Do not upload an AAB signed with a different key to an already-registered package.
 
-Confirm whether the friend's developer account is **Personal** or **Organization**, and when it was created. New personal accounts created after 13 November 2023 need at least 12 testers opted in continuously for 14 days before applying for production access. Fourteen available testers provide a buffer, but the actual opt-in timestamps must be tracked.
+Confirm whether the friend's developer account is **Personal** or **Organization**, and when it was created. New personal accounts created after 13 November 2023 need at least 12 testers opted in continuously for 14 days before applying for production access. Fourteen available testers provide a buffer, but the actual opt-in timestamps must be tracked. See Google's official [testing requirements](https://support.google.com/googleplay/android-developer/answer/14151465).
 
 The Android package ID is currently com.yomobiles.client. Confirm that this is the package ID intended for the friend's Play Console app, whether any version has already been uploaded, and the highest version code already used (the current source version is 1.0.0+5).
 
@@ -45,7 +47,7 @@ The Android package ID is currently com.yomobiles.client. Confirm that this is t
 
 The hosted web screenshot pack captures the storefront and admin sign-in page. The authenticated admin dashboard and protected pages cannot be captured without an authorized session.
 
-The preview-only Android debug APK is now available from [mobile CI run 43232961622](https://github.com/kalaabalb/yomart-mobile/actions/runs/43232961622), artifact 13950889093. It is configured to connect to the production API and keep prices/stock hidden and ordering disabled. This is a debug build for sideload acceptance only, not a signed Play AAB. The emulator screenshot step is still running. Do not use the older debug artifact from run 43229794520; that build used the local 127.0.0.1 API default and is not suitable for external-device testing.
+The preview-only Android debug APK is available from [mobile CI run 43232961622](https://github.com/kalaabalb/yomart-mobile/actions/runs/43232961622), artifact 13950889093. It is configured to connect to the production API and keep prices/stock hidden and ordering disabled. This is a debug build for sideload acceptance only, not a signed Play AAB. The emulator screenshot step in that run was cancelled during the bounded emulator retry. A split-ABI rebuild is running in [mobile CI run 43234715460](https://github.com/kalaabalb/yomart-mobile/actions/runs/43234715460); use its artifacts when ready. Do not use the older debug artifact from run 43229794520; that build used the local 127.0.0.1 API default and is not suitable for external-device testing.
 
 Sign in yourself at [yomart-admin.onrender.com](https://yomart-admin.onrender.com) and provide sanitized screenshots of the dashboard, product list/detail, order list, payment settings and other important admin pages. Do not send passwords or customer personal data. Also install the preview APK on a real Android device and report any launch, login, navigation or layout failures.
 
