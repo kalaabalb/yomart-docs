@@ -22,9 +22,6 @@ Still required before publication:
 - Confirmation that the described deletion behavior is acceptable: sign-in is disabled; direct profile/contact/delivery identifiers and reviews are removed; some order/payment records may remain pseudonymized; the customer loses access to order history and receipts.
 
 Do not infer or invent any of these remaining details.
-- Customer support email that is monitored.
-- Public business contact details/address and the country/jurisdiction the business operates under.
-- Owner-approved retention period and legal basis for keeping pseudonymized order/payment evidence after account deletion.
 - Confirmation that the described deletion behavior is acceptable: sign-in is disabled; direct profile/contact/delivery identifiers and reviews are removed; some order/payment records may remain pseudonymized; the customer loses access to order history and receipts.
 
 Google Play requires a public, globally accessible privacy policy linked both in the Play listing and inside the app. It also requires an accessible account-deletion path for apps with account creation, and associated user data must be deleted except data retained for legitimate reasons that are clearly disclosed. Review the official [Google Play User Data policy](https://support.google.com/googleplay/android-developer/answer/10144311). This is why the current pseudonymized order/payment retention needs your explicit legal/business approval before the pages are final.
