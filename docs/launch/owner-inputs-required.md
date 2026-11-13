@@ -10,9 +10,18 @@ A real transactional test or public sales launch additionally requires owner-app
 
 ## Legal publisher and support details
 
-Supply the exact details to publish in the privacy policy and account-deletion page:
+Confirmed owner information:
 
-- Legal person/entity responsible for YoMart and the public developer/publisher name if different; tell us which name should appear in the policy.
+- **Yonas Ambelu** is the legal owner and retailer responsible for YoMart. Use this exact name in the legal publisher/retailer identity fields, subject to the owner's final review of the published page.
+
+Still required before publication:
+
+- Customer support email that is monitored.
+- Public business contact details/address and the country/jurisdiction the business operates under.
+- Owner-approved retention period and legal basis for keeping pseudonymized order/payment evidence after account deletion.
+- Confirmation that the described deletion behavior is acceptable: sign-in is disabled; direct profile/contact/delivery identifiers and reviews are removed; some order/payment records may remain pseudonymized; the customer loses access to order history and receipts.
+
+Do not infer or invent any of these remaining details.
 - Customer support email that is monitored.
 - Public business contact details/address and the country/jurisdiction the business operates under.
 - Owner-approved retention period and legal basis for keeping pseudonymized order/payment evidence after account deletion.
